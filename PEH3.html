@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>Folk Dance Reviewer &amp; Quiz</title>
+</head>
+<body>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:0;color:#333;overflow-x:hidden}
+h1{color:#fff;text-align:center;margin-bottom:10px;font-size:2.2em;text-shadow:2px 2px 4px rgba(0,0,0,.3);padding:25px 20px 15px;letter-spacing:1px}
+h2{color:#2c3e50;font-size:1.5em;margin-bottom:10px}
+h3{color:#34495e;font-size:1.15em;margin-bottom:8px}
+h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes floatUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+/* Sticky Reviewer Navigation */
+#reviewerNav{position:sticky;top:0;z-index:1000;display:flex;justify-content:center;gap:6px;padding:12px 20px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.15);border-bottom:2px solid rgba(102,126,234,.2)}
+#reviewerNav .nav-link{padding:10px 22px;border-radius:50px;text-decoration:none;color:#555;font-weight:600;font-size:.92em;transition:all .3s;border:2px solid transparent;letter-spacing:.3px}
+#reviewerNav .nav-link:hover{color:#667eea;background:rgba(102,126,234,.08)}
+#reviewerNav .nav-link.active{color:#fff;background:linear-gradient(135deg,#667eea,#764ba2);border-color:transparent;box-shadow:0 3px 12px rgba(102,126,234,.35)}
+
+/* Section Cards - Glass Effect */
+.section{background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:16px;padding:28px;margin:20px auto;max-width:1100px;box-shadow:0 8px 32px rgba(0,0,0,.12);border:1px solid rgba(255,255,255,.5);animation:fadeIn .6s ease-out}
+.section h2{border-bottom:3px solid #667eea;padding-bottom:10px;margin-bottom:18px}
+.section ul{list-style:none;padding-left:10px}
+.section li{padding:10px 14px;margin:6px 0;background:rgba(248,249,250,.8);border-left:4px solid #667eea;border-radius:0 10px 10px 0;font-size:1em;line-height:1.6;transition:all .25s}
+.section li:hover{background:rgba(102,126,234,.08);transform:translateX(4px)}
+.section li strong{color:#2c3e50}
+.section li em{color:#7f8c8d;font-style:italic}
+
+/* Position Image Grid */
+.position-images{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:18px 0}
+.position-img-card{text-align:center;background:#f8f9fa;border-radius:14px;padding:12px;border:2px solid #d6e4ff;transition:all .3s;cursor:default}
+.position-img-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.position-img-card img{width:100%;height:auto;border-radius:10px;max-height:240px;object-fit:contain;background:#fff}
+.position-img-card p{margin-top:10px;font-weight:bold;color:#2e86c1;font-size:1em}
+
+/* Position Description Cards */
+.position-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0}
+.position-card{background:#f0f4ff;border:2px solid #d6e4ff;border-radius:12px;padding:16px;text-align:center;transition:all .3s}
+.position-card:hover{transform:translateY(-4px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.position-card h4{color:#2e86c1;margin-bottom:8px;font-size:1em}
+.position-card p{color:#555;font-size:.92em;line-height:1.5}
+.position-card h4::before{display:inline-block;width:30px;height:30px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:50%;text-align:center;line-height:30px;font-size:14px;margin-right:8px;vertical-align:middle}
+.position-card:nth-child(1) h4::before{content:'1'}.position-card:nth-child(2) h4::before{content:'2'}.position-card:nth-child(3) h4::before{content:'3'}.position-card:nth-child(4) h4::before{content:'4'}.position-card:nth-child(5) h4::before{content:'5'}.position-card:nth-child(6) h4::before{content:'1'}.position-card:nth-child(7) h4::before{content:'2'}.position-card:nth-child(8) h4::before{content:'3'}.position-card:nth-child(9) h4::before{content:'4'}.position-card:nth-child(10) h4::before{content:'5'}
+.position-card.arms{border-left:4px solid #e74c3c}.position-card.feet{border-left:4px solid #3498db}
+
+/* Step Groups */
+.step-group{background:#f8f9fa;border-radius:12px;padding:16px 22px;margin-bottom:16px;border-left:4px solid #667eea;transition:all .3s}
+.step-group:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.step-group h3{color:#2c3e50;margin-bottom:10px;font-size:1.08em}
+.step-group h3 .time-sig{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:3px 12px;border-radius:14px;font-size:.75em;font-weight:normal;margin-left:8px}
+.step-group li{padding:9px 14px;margin:5px 0;background:#fff;border-radius:8px;font-size:.92em;line-height:1.6;transition:all .2s}
+.step-group li:hover{background:#f0f4ff}
+.step-count{display:inline-block;background:#ffeaa7;color:#6c5ce7;padding:2px 10px;border-radius:12px;font-size:.8em;font-weight:bold;margin-left:5px}
+.step-pattern{display:inline-block;background:#e8f4fd;color:#2e86c1;padding:3px 10px;border-radius:15px;font-size:.8em;margin-top:4px;font-weight:600}
+
+/* Quiz Button */
+.quiz-btn-wrapper{text-align:center;margin:35px 0;padding:20px}
+.quiz-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:16px 48px;font-size:1.2em;border-radius:50px;cursor:pointer;transition:all .3s;box-shadow:0 6px 24px rgba(102,126,234,.45);letter-spacing:.5px}
+.quiz-btn:hover{transform:scale(1.06);box-shadow:0 8px 30px rgba(102,126,234,.65);animation:pulse 1s infinite}
+
+/* Exam Container */
+#examContainer{display:none;max-width:1100px;margin:0 auto;padding:20px}
+#reviewerContainer{}
+.exam-header{background:linear-gradient(135deg,#2c3e50,#34495e);color:#fff;padding:18px 28px;border-radius:14px 14px 0 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.exam-header h2{color:#fff;margin-bottom:0}
+.exam-header small{color:#bdc3c7}
+.timer{font-size:1.3em;font-weight:bold;color:#f39c12;background:rgba(0,0,0,.2);padding:6px 16px;border-radius:10px}
+.progress-bar-container{background:rgba(255,255,255,.2);height:10px;border-radius:5px;margin-top:12px;overflow:hidden;width:100%}
+.progress-bar{background:linear-gradient(90deg,#f39c12,#e74c3c,#667eea,#27ae60);height:100%;border-radius:5px;transition:width .4s ease;min-width:0;display:flex;align-items:center;justify-content:center;font-size:.7em;color:#fff;font-weight:bold}
+
+/* Exam Navigation Tabs */
+.exam-nav{display:flex;gap:6px;padding:14px 0;flex-wrap:wrap;justify-content:center}
+.exam-tab{padding:10px 20px;border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;border-radius:50px;cursor:pointer;font-size:.9em;font-weight:600;transition:all .3s;backdrop-filter:blur(8px)}
+.exam-tab:hover{background:rgba(255,255,255,.25)}
+.exam-tab.active{background:#fff;color:#667eea;border-color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+
+/* Exam Sections */
+.exam-section{background:#fff;border-radius:14px;padding:28px;margin-bottom:18px;box-shadow:0 5px 18px rgba(0,0,0,.1);animation:fadeIn .5s ease-out;border-left:6px solid #3498db}
+.sec-mc{border-left-color:#3498db}.sec-id{border-left-color:#9b59b6}.sec-draw{border-left-color:#e67e22}.sec-essay{border-left-color:#e74c3c}
+
+/* Questions */
+.question{background:#fff;border-radius:12px;padding:22px;margin-bottom:16px;box-shadow:0 3px 12px rgba(0,0,0,.06);border-left:4px solid #ddd;transition:all .3s}
+.question:hover{border-left-color:#667eea;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.points{background:linear-gradient(135deg,#f39c12,#e67e22);color:#fff;padding:3px 12px;border-radius:15px;font-size:.75em;font-weight:bold;float:right}
+
+/* MC Options */
+.mc-options{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.mc-options label{display:block;padding:11px 16px;background:#f8f9fa;border:2px solid #e0e0e0;border-radius:10px;cursor:pointer;transition:all .25s;font-size:.95em}
+.mc-options label:hover{border-color:#667eea;background:#f0f4ff;transform:translateX(4px)}
+.mc-options input[type="radio"]{margin-right:10px;accent-color:#667eea}
+
+/* ID Input */
+.id-input{width:100%;padding:11px 14px;border:2px solid #ddd;border-radius:10px;font-size:1em;margin-top:10px;transition:all .3s}
+.id-input:focus{border-color:#667eea;outline:none;box-shadow:0 0 0 3px rgba(102,126,234,.15)}
+
+/* Drawing Area */
+.draw-area{margin-top:14px}
+.draw-ref{border:2px dashed #bbb;border-radius:14px;padding:18px;text-align:center;background:linear-gradient(135deg,#f8f9fa,#f0f4ff);margin-bottom:14px}
+.draw-ref img{max-width:100%;max-height:300px;border-radius:10px;box-shadow:0 3px 12px rgba(0,0,0,.1)}
+.draw-ref p{margin-top:8px;color:#888;font-weight:600;font-size:.9em}
+.draw-pad{border:2px solid #ccc;border-radius:12px;background:#fff;cursor:crosshair;touch-action:none;display:block;margin:0 auto;position:relative;overflow:hidden}
+.draw-pad canvas{display:block;width:100%;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.draw-tools{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;justify-content:center}
+.draw-tools button{padding:9px 18px;border:2px solid #ddd;border-radius:10px;background:#fff;cursor:pointer;font-size:.9em;transition:all .25s;font-weight:500}
+.draw-tools button:hover{border-color:#667eea;background:#f0f4ff}
+.draw-tools button.active{background:#667eea;color:#fff;border-color:#667eea}
+.draw-tools input[type="range"]{accent-color:#667eea;vertical-align:middle}
+
+/* Essay / Short Answer */
+.essay-area{width:100%;min-height:120px;padding:14px;border:2px solid #ddd;border-radius:10px;font-size:.95em;font-family:inherit;resize:vertical;transition:all .3s}
+.essay-area:focus{border-color:#667eea;outline:none;box-shadow:0 0 0 3px rgba(102,126,234,.15)}
+
+/* Exam Section Navigation */
+.exam-section-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:14px;flex-wrap:wrap}
+.btn-prev,.btn-next{padding:12px 30px;border:none;border-radius:50px;font-size:1em;font-weight:600;cursor:pointer;transition:all .3s}
+.btn-prev{background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.3)}
+.btn-prev:hover:not(:disabled){background:rgba(255,255,255,.3)}
+.btn-prev:disabled{opacity:.4;cursor:not-allowed}
+.btn-next{background:linear-gradient(135deg,#27ae60,#2ecc71);color:#fff;box-shadow:0 4px 16px rgba(39,174,96,.35)}
+.btn-next:hover{transform:scale(1.04);box-shadow:0 6px 20px rgba(39,174,96,.5)}
+.section-indicator{color:#fff;font-weight:600;font-size:1em;background:rgba(255,255,255,.15);padding:8px 20px;border-radius:50px;backdrop-filter:blur(8px)}
+
+/* Submit Button */
+.submit-wrapper{text-align:center;margin:28px 0}
+.submit-btn{background:linear-gradient(135deg,#27ae60,#2ecc71);color:#fff;border:none;padding:16px 54px;font-size:1.15em;border-radius:50px;cursor:pointer;transition:all .3s;box-shadow:0 6px 24px rgba(39,174,96,.4);letter-spacing:.5px}
+.submit-btn:hover{transform:scale(1.06);box-shadow:0 8px 30px rgba(39,174,96,.6)}
+
+/* Results */
+#resultsContainer{display:none;max-width:700px;margin:30px auto;padding:20px}
+.results-card{background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-radius:20px;padding:36px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.2);animation:floatUp .6s ease-out}
+.results-card h2{margin-bottom:20px}
+.score-circle{width:160px;height:160px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 24px;font-size:2.8em;font-weight:bold;color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.2);transition:all .3s}
+.score-circle small{font-size:.35em;font-weight:normal;opacity:.9}
+.score-circle.excellent{background:linear-gradient(135deg,#27ae60,#2ecc71)}
+.score-circle.good{background:linear-gradient(135deg,#2e86c1,#3498db)}
+.score-circle.average{background:linear-gradient(135deg,#f39c12,#e67e22)}
+.score-circle.poor{background:linear-gradient(135deg,#e74c3c,#c0392b)}
+#scoreMsg{font-size:1.15em;color:#555;margin:10px 0 20px;font-weight:500}
+.breakdown{text-align:left;margin:20px 0;background:rgba(248,249,250,.6);border-radius:12px;padding:12px}
+.breakdown-row{display:flex;justify-content:space-between;padding:11px 16px;border-bottom:1px solid #ecf0f1;font-size:.95em;transition:all .2s}
+.breakdown-row:hover{background:rgba(102,126,234,.05);border-radius:8px}
+.breakdown-row:last-child{border-bottom:none}
+.breakdown-row span:first-child{color:#555}
+.breakdown-row span:last-child{font-weight:bold;color:#2c3e50}
+.breakdown-row.total{border-top:2px solid #667eea;border-bottom:none;font-weight:bold}
+.result-btns{display:flex;gap:16px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.btn-review{padding:13px 32px;border:2px solid #667eea;color:#667eea;background:transparent;border-radius:50px;font-size:1em;cursor:pointer;transition:all .3s;font-weight:600}
+.btn-review:hover{background:#667eea;color:#fff;transform:scale(1.04)}
+.btn-retake{padding:13px 32px;border:2px solid #e74c3c;color:#e74c3c;background:transparent;border-radius:50px;font-size:1em;cursor:pointer;transition:all .3s;font-weight:600}
+.btn-retake:hover{background:#e74c3c;color:#fff;transform:scale(1.04)}
+
+/* Back to Top */
+#backToTop{position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;font-size:1.4em;cursor:pointer;box-shadow:0 4px 18px rgba(102,126,234,.5);transition:all .3s;opacity:0;pointer-events:none;z-index:999}
+#backToTop.visible{opacity:1;pointer-events:auto}
+#backToTop:hover{transform:scale(1.1) translateY(-3px);box-shadow:0 6px 24px rgba(102,126,234,.7)}
+
+/* Media Queries */
+@media(max-width:768px){
+  body{padding:10px}
+  h1{font-size:1.5em}
+  .position-images{grid-template-columns:repeat(2,1fr)}
+  .position-grid{grid-template-columns:1fr}
+  .exam-header{flex-direction:column;gap:8px;text-align:center}
+  .result-btns{flex-direction:column;align-items:center}
+  .draw-area{display:flex;flex-direction:column}
+  .draw-ref{max-height:200px;overflow:auto}
+  .draw-ref img{max-height:180px}
+  .draw-pad canvas{max-width:100%}
+  .exam-tab{padding:8px 12px;font-size:.8em}
+  .exam-nav{flex-wrap:wrap;gap:4px}
+  .mc-options label{padding:8px 10px;font-size:.85em}
+  .question{padding:14px}
+  .section{padding:15px}
+  .step-group{padding:12px 14px}
+  .step-group li{padding:6px 8px;font-size:.85em}
+  .timer{font-size:1em}
+  .btn-prev,.btn-next{padding:10px 20px;font-size:.9em}
+  .section-indicator{font-size:.85em}
+}
+@media(max-width:480px){
+  body{padding:8px}
+  h1{font-size:1.3em}
+  .section{padding:12px;border-radius:8px}
+  .position-images{grid-template-columns:1fr 1fr;gap:8px}
+  .position-img-card{padding:6px}
+  .position-img-card img{max-height:140px}
+  .position-img-card p{font-size:.8em}
+  .position-card{padding:10px}
+  .position-card p{font-size:.82em}
+  .exam-tab{padding:6px 8px;font-size:.75em}
+  .question{padding:12px;margin-bottom:10px}
+  .draw-pad canvas{width:100%!important}
+  .draw-tools{gap:4px}
+  .draw-tools button{padding:6px 10px;font-size:.8em}
+  .submit-btn{padding:12px 30px;font-size:1em}
+  .quiz-btn{padding:12px 30px;font-size:1em}
+  .essay-area{min-height:80px;font-size:.9em}
+  .score-circle{width:120px;height:120px;font-size:2em}
+  .breakdown-row{padding:8px 10px;font-size:.85em}
+  .exam-section{padding:15px}
+  .id-input{padding:8px;font-size:.9em}
+  .nav-link{padding:6px 12px;font-size:.82em}
+}
+</style>
+
+<h1>Folk Dance Reviewer &amp; Quiz</h1>
+
+<!-- Sticky Navigation -->
+<nav id="reviewerNav">
+  <a href="#sec-fitness" class="nav-link active" onclick="smoothTo(event,'sec-fitness')">Fitness</a>
+  <a href="#sec-terms" class="nav-link" onclick="smoothTo(event,'sec-terms')">Dance Terms</a>
+  <a href="#sec-positions" class="nav-link" onclick="smoothTo(event,'sec-positions')">Positions</a>
+  <a href="#sec-steps" class="nav-link" onclick="smoothTo(event,'sec-steps')">Dance Steps</a>
+</nav>
+
+<div id="reviewerContainer">
+
+<div class="section" id="sec-fitness">
+<h2>Section 1: Health-Related Fitness Components</h2>
+<ul>
+<li><strong>1. Cardiorespiratory Endurance</strong> &mdash; <em>The ability of the heart, lungs, and blood vessels to deliver oxygen during sustained physical activity.</em></li>
+<li><strong>2. Muscular Strength</strong> &mdash; <em>The maximum amount of force a muscle or muscle group can exert in a single effort.</em></li>
+<li><strong>3. Muscular Endurance</strong> &mdash; <em>The ability of a muscle to sustain repeated contractions over a period of time.</em></li>
+<li><strong>4. Flexibility</strong> &mdash; <em>The range of motion available at a joint; important for graceful dance movements.</em></li>
+<li><strong>5. Body Composition</strong> &mdash; <em>The relative percentage of lean mass to fat mass in the body.</em></li>
+</ul>
+</div>
+
+<div class="section" id="sec-terms">
+<h2>Section 2: Common Folk Dance Terms</h2>
+<ul>
+<li><strong>1. Saludo</strong> &mdash; <em>A bow or greeting gesture performed at the beginning or end of a dance.</em></li>
+<li><strong>2. Hayon-Hayon</strong> &mdash; <em>A gesture where one hand is placed at the waist while the other hand moves in a waving motion, often alternating.</em></li>
+<li><strong>3. Sarok</strong> &mdash; <em>A gesture where one arm crosses the body, typically with the hand reaching toward the opposite hip or shoulder.</em></li>
+<li><strong>4. Do-Si-Do</strong> &mdash; <em>A movement where two dancers pass each other shoulder to shoulder, then step back to back before returning to face each other.</em></li>
+<li><strong>5. Kumintang</strong> &mdash; <em>A circular motion of the hand and wrist, often used to accentuate arm movements in Philippine folk dances.</em></li>
+<li><strong>6. Cabesang</strong> &mdash; <em>Refers to movements led by the head or a bowing gesture; often performed with the hand holding the head or gesturing near the forehead.</em></li>
+<li><strong>7. Crossed Arms</strong> &mdash; <em>Both arms folded across the chest, commonly seen in various Philippine folk dance formations.</em></li>
+</ul>
+</div>
+
+<div class="section" id="sec-positions">
+<h2>Section 3: Five Fundamentals of Arms and Feet</h2>
+
+<div class="position-images">
+<div class="position-img-card"><img src="1st Position.jpg" alt="1st Fundamental Position of Arms and Feet"><p>1st Position</p></div>
+<div class="position-img-card"><img src="2st Position.jpg" alt="2nd Fundamental Position of Arms and Feet"><p>2nd Position</p></div>
+<div class="position-img-card"><img src="3st Position.jpg" alt="3rd Fundamental Position of Arms and Feet"><p>3rd Position</p></div>
+<div class="position-img-card"><img src="4st Position.jpg" alt="4th Fundamental Position of Arms and Feet"><p>4th Position</p></div>
+<div class="position-img-card"><img src="5st Position.jpg" alt="5th Fundamental Position of Arms and Feet"><p>5th Position</p></div>
+</div>
+
+<div class="position-grid">
+<div class="position-card arms">
+<h4>Arm Position 1</h4>
+<p>Both arms are curved in front of the chest, fingertips almost touching, forming a circle or oval shape. Elbows are relaxed and slightly away from the body.</p>
+</div>
+<div class="position-card arms">
+<h4>Arm Position 2</h4>
+<p>Both arms are extended sideward at shoulder level, slightly curved downward. Palms face down with fingers together and thumbs tucked in.</p>
+</div>
+<div class="position-card arms">
+<h4>Arm Position 3</h4>
+<p>One arm is raised overhead in a curved position; the other remains extended sideward at shoulder level. The raised arm creates a graceful arch above the head.</p>
+</div>
+<div class="position-card arms">
+<h4>Arm Position 4</h4>
+<p>One arm is raised overhead in a curve; the other is extended forward at shoulder level, palm down. Both arms maintain a soft, rounded line.</p>
+</div>
+<div class="position-card arms">
+<h4>Arm Position 5</h4>
+<p>Both arms are raised overhead, fingertips almost touching, forming a complete circle or oval above the head. Elbows are gently curved outward.</p>
+</div>
+<div class="position-card feet">
+<h4>Feet Position 1</h4>
+<p>Heels are placed together and toes are turned out apart (approximately 45 degrees). Legs are straight and touching each other.</p>
+</div>
+<div class="position-card feet">
+<h4>Feet Position 2</h4>
+<p>Feet are placed apart sideward at shoulder distance, toes pointing forward. Weight is evenly distributed on both feet.</p>
+</div>
+<div class="position-card feet">
+<h4>Feet Position 3</h4>
+<p>The heel of one foot is placed in front of the instep (arch) of the other foot. The feet form a right angle shape with slight separation.</p>
+</div>
+<div class="position-card feet">
+<h4>Feet Position 4</h4>
+<p>One foot is placed in front of the other at a comfortable distance. Both toes point forward, with the back foot slightly turned out.</p>
+</div>
+<div class="position-card feet">
+<h4>Feet Position 5</h4>
+<p>The heel of one foot is placed directly in front of and touching the toes of the other foot. Both feet form a straight line.</p>
+</div>
+</div>
+</div>
+
+<div class="section" id="sec-steps">
+<h2>Section 4: Common Folk Dance Steps</h2>
+
+<div class="step-group">
+<h3>Polka Series <span class="time-sig">2/4 Time</span></h3>
+<ul>
+<li><strong>Plain Polka</strong> &mdash; Step, close step (pause). <span class="step-count">Count: Ah, 1 &amp; 2 &amp;</span></li>
+<li><strong>Hop Polka</strong> &mdash; Hop step, close step (pause). <span class="step-count">Count: 1, 2, 1, 2 &amp;</span></li>
+<li><strong>Heel and Toe Polka</strong> &mdash; Heel place, Toe place, Step, close step (pause). <span class="step-count">Count: 1, 2, 1, 2 &amp;</span></li>
+<li><strong>Slide Polka</strong> &mdash; Slide, close step (pause). <span class="step-count">Count: 1, 2, 1, 2 &amp;</span></li>
+</ul>
+</div>
+
+<div class="step-group">
+<h3>Waltz Series <span class="time-sig">3/4 Time</span></h3>
+<ul>
+<li><strong>Native Waltz</strong> &mdash; Step, close, step. <span class="step-count">Count: 1, 2, 3</span></li>
+<li><strong>Waltz Balance</strong> &mdash; Step, close, raise heels up, down. <span class="step-count">Count: 1, 2, 3</span></li>
+<li><strong>Cross Waltz</strong> &mdash; Cross-step, close, step. <span class="step-count">Count: 1, 2, 3</span></li>
+</ul>
+</div>
+
+<div class="step-group">
+<h3>Sway Balance Series <span class="time-sig">3/4 Time</span></h3>
+<ul>
+<li><strong>With a point</strong> &mdash; Step, cross-step/Step, point.</li>
+<li><strong>With a waltz</strong> &mdash; Step, cross-step/Step, close.</li>
+<li><strong>With a raise</strong> &mdash; Step, cross-step/Step, raise.</li>
+<li><strong>With a brush</strong> &mdash; Step, cross-step/Step, brush.</li>
+<li><strong>Double sway balance</strong> &mdash; Step, cross-step/Step, close.</li>
+</ul>
+</div>
+
+<div class="step-group">
+<h3>Other Steps</h3>
+<ul>
+<li><strong>Bacui <span class="time-sig">3/4 Time</span></strong> &mdash; Cross-point step, cross-step rear, cross-step front, close (pause).</li>
+<li><strong>Bicking <span class="time-sig">2/4 or 3/4 Time</span></strong> &mdash; Heel-place, close.</li>
+<li><strong>Change Step <span class="time-sig">2/4 Time</span></strong> &mdash; Step, close, step.</li>
+<li><strong>Cross Change Step <span class="time-sig">2/4 Time</span></strong> &mdash; Cross-step, step.</li>
+</ul>
+</div>
+
+<div class="step-group">
+<h3>Advanced Folk Dance Steps</h3>
+<ul>
+<li><strong>Contra-ganza <span class="time-sig">2/4 Time</span></strong> &mdash; Leap sideward, cross-step, step.</li>
+<li><strong>Haplik</strong> &mdash; Step, step, hop, hop, three-step turn, hop, hop, repeat.</li>
+<li><strong>Mazurka <span class="time-sig">3/4 Time</span></strong> &mdash; Slide, cut, hop.</li>
+<li><strong>Jotudansa <span class="time-sig">3/4 Time</span></strong> &mdash; Step, heel brush, heel-step (3x right, 3x left), step-close-step with turn.</li>
+<li><strong>Redoba <span class="time-sig">3/4 Time</span></strong> &mdash; Slide, cut, cut.</li>
+<li><strong>Engano Series <span class="time-sig">3/4 Time</span></strong> &mdash; Variations with waltz, close, heel-place.</li>
+<li><strong>Paso Espa&ntilde;ol <span class="time-sig">3/4 Time</span></strong> &mdash; Step, close heels up/down, brush-swing.</li>
+<li><strong>Papuri <span class="time-sig">3/4 Time</span></strong> &mdash; Step, cross-step, cross-point.</li>
+<li><strong>Sangi <span class="time-sig">3/4 Time</span></strong> &mdash; Step, close, circle in air.</li>
+<li><strong>Escotis <span class="time-sig">2/4 Time</span></strong> &mdash; Step, close, step, hop.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="quiz-btn-wrapper">
+<button class="quiz-btn" onclick="startExam()">Take the Exam</button>
+</div>
+
+</div>
+
+<!-- EXAM -->
+<div id="examContainer">
+  <div class="exam-header">
+    <div>
+      <h2>Folk Dance Exam</h2>
+      <small>Total: 100 Points</small>
+    </div>
+    <div class="timer" id="timerDisplay">00:00</div>
+    <div class="progress-bar-container"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+
+  <!-- Exam Section Navigation Tabs -->
+  <div class="exam-nav">
+    <button class="exam-tab active" onclick="showExamSection(1)">MC (50 items)</button>
+    <button class="exam-tab" onclick="showExamSection(2)">Identification (30 items)</button>
+    <button class="exam-tab" onclick="showExamSection(3)">Drawing (5 items)</button>
+    <button class="exam-tab" onclick="showExamSection(4)">Short Answer (10 items)</button>
+  </div>
+
+  <!-- SECTION 1: MULTIPLE CHOICE - 50 items x 1pt = 50pts -->
+  <div class="exam-section sec-mc" id="examSection1">
+    <h3>Section 1: Multiple Choice <span>(50 items x 1 pt = 50 pts)</span></h3>
+
+    <!-- Q1-10: Health-Related Fitness -->
+    <div class="question" data-q="mc1">
+      <p>1. Which component of health-related fitness refers to the ability of the heart, lungs, and blood vessels to supply oxygen during sustained physical activity? <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc1" value="a"><span>Muscular Strength</span></label>
+        <label><input type="radio" name="mc1" value="b"><span>Cardiorespiratory Endurance</span></label>
+        <label><input type="radio" name="mc1" value="c"><span>Flexibility</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc2">
+      <p>2. The maximum amount of force a muscle or muscle group can generate is called __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc2" value="a"><span>Muscular Endurance</span></label>
+        <label><input type="radio" name="mc2" value="b"><span>Body Composition</span></label>
+        <label><input type="radio" name="mc2" value="c"><span>Muscular Strength</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc3">
+      <p>3. The ability of a muscle to perform repeated contractions over a period of time is known as __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc3" value="a"><span>Cardiorespiratory Endurance</span></label>
+        <label><input type="radio" name="mc3" value="b"><span>Muscular Endurance</span></label>
+        <label><input type="radio" name="mc3" value="c"><span>Body Composition</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc4">
+      <p>4. Flexibility is the ability of a __________ to move through its __________ range of motion. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc4" value="a"><span>joint; full</span></label>
+        <label><input type="radio" name="mc4" value="b"><span>muscle; partial</span></label>
+        <label><input type="radio" name="mc4" value="c"><span>bone; limited</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc5">
+      <p>5. Which of the following is a component of body composition? <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc5" value="a"><span>Bone density only</span></label>
+        <label><input type="radio" name="mc5" value="b"><span>Ratio of fat mass to lean mass</span></label>
+        <label><input type="radio" name="mc5" value="c"><span>Height and weight only</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc6">
+      <p>6. Which of the following activities BEST develops cardiorespiratory endurance? <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc6" value="a"><span>Weight lifting</span></label>
+        <label><input type="radio" name="mc6" value="b"><span>Running or brisk walking</span></label>
+        <label><input type="radio" name="mc6" value="c"><span>Stretching exercises</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc7">
+      <p>7. The "flexed-arm hang" test primarily measures __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc7" value="a"><span>Cardiorespiratory Endurance</span></label>
+        <label><input type="radio" name="mc7" value="b"><span>Body Composition</span></label>
+        <label><input type="radio" name="mc7" value="c"><span>Muscular Strength/Endurance</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc8">
+      <p>8. The "sit-and-reach" test is used to measure __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc8" value="a"><span>Flexibility</span></label>
+        <label><input type="radio" name="mc8" value="b"><span>Muscular Strength</span></label>
+        <label><input type="radio" name="mc8" value="c"><span>Body Composition</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc9">
+      <p>9. Which component of fitness is measured using the Body Mass Index (BMI)? <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc9" value="a"><span>Cardiorespiratory Endurance</span></label>
+        <label><input type="radio" name="mc9" value="b"><span>Body Composition</span></label>
+        <label><input type="radio" name="mc9" value="c"><span>Muscular Endurance</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc10">
+      <p>10. The 1.5-mile run or the 12-minute run test measures __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc10" value="a"><span>Muscular Strength</span></label>
+        <label><input type="radio" name="mc10" value="b"><span>Flexibility</span></label>
+        <label><input type="radio" name="mc10" value="c"><span>Cardiorespiratory Endurance</span></label>
+      </div>
+    </div>
+
+    <!-- Q11-20: Dance Terms -->
+    <div class="question" data-q="mc11">
+      <p>11. "Saludo" in Philippine folk dance means __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc11" value="a"><span>To bow or greet</span></label>
+        <label><input type="radio" name="mc11" value="b"><span>To turn around</span></label>
+        <label><input type="radio" name="mc11" value="c"><span>To skip forward</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc12">
+      <p>12. "Hayon-Hayon" refers to a dance step where the arms are placed __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc12" value="a"><span>One arm in front, one behind the waist, alternating</span></label>
+        <label><input type="radio" name="mc12" value="b"><span>Both arms raised overhead</span></label>
+        <label><input type="radio" name="mc12" value="c"><span>Both arms crossed on the chest</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc13">
+      <p>13. What is "Sarok" in Philippine folk dance? <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc13" value="a"><span>A gesture of pointing</span></label>
+        <label><input type="radio" name="mc13" value="b"><span>Crossing one foot over the other with arms crossed</span></label>
+        <label><input type="radio" name="mc13" value="c"><span>A clapping pattern</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc14">
+      <p>14. "Do-Si-Do" is a movement where dancers __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc14" value="a"><span>Pass each other right shoulder to right shoulder, then back to back</span></label>
+        <label><input type="radio" name="mc14" value="b"><span>Face each other and hold hands</span></label>
+        <label><input type="radio" name="mc14" value="c"><span>Spin in place three times</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc15">
+      <p>15. "Kumintang" is a hand gesture that involves __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc15" value="a"><span>Wrist rotation or hand waving</span></label>
+        <label><input type="radio" name="mc15" value="b"><span>Finger snapping</span></label>
+        <label><input type="radio" name="mc15" value="c"><span>Clapping overhead</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc16">
+      <p>16. "Cabesang" or "Kabesa" in Philippine folk dance means __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc16" value="a"><span>A leader or head of a group</span></label>
+        <label><input type="radio" name="mc16" value="b"><span>A follower or backup dancer</span></label>
+        <label><input type="radio" name="mc16" value="c"><span>An audience member</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc17">
+      <p>17. In Philippine folk dance, "Crossed Arms" means the arms are __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc17" value="a"><span>Placed at the sides of the body</span></label>
+        <label><input type="radio" name="mc17" value="b"><span>Folded across the chest</span></label>
+        <label><input type="radio" name="mc17" value="c"><span>Held at shoulder level</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc18">
+      <p>18. "Clap" or "Palakpak" in Philippine folk dance refers to __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc18" value="a"><span>A stamping of the feet</span></label>
+        <label><input type="radio" name="mc18" value="b"><span>A hand clapping movement</span></label>
+        <label><input type="radio" name="mc18" value="c"><span>A shoulder shrug</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc19">
+      <p>19. The term "Touch Step" in dance involves __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc19" value="a"><span>A hop and a turn</span></label>
+        <label><input type="radio" name="mc19" value="b"><span>Pointing one foot then closing it beside the other</span></label>
+        <label><input type="radio" name="mc19" value="c"><span>A leap forward</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc20">
+      <p>20. "Bend and Point" is a step where the dancer __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc20" value="a"><span>Bends one knee and points the other foot forward</span></label>
+        <label><input type="radio" name="mc20" value="b"><span>Bends forward at the waist</span></label>
+        <label><input type="radio" name="mc20" value="c"><span>Bends both knees simultaneously</span></label>
+      </div>
+    </div>
+
+    <!-- Q21-35: Five Fundamentals of Arms and Feet -->
+    <div class="question" data-q="mc21">
+      <p>21. In the 1st position of arms, the arms are __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc21" value="a"><span>Held sideward at shoulder level</span></label>
+        <label><input type="radio" name="mc21" value="b"><span>Circled in front of the chest, fingertips a few inches apart</span></label>
+        <label><input type="radio" name="mc21" value="c"><span>Raised overhead in a circle</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc22">
+      <p>22. In the 2nd position of arms, the arms are __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc22" value="a"><span>Raised overhead in a circle</span></label>
+        <label><input type="radio" name="mc22" value="b"><span>Placed in front of the chest</span></label>
+        <label><input type="radio" name="mc22" value="c"><span>Opened sideward at shoulder level</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc23">
+      <p>23. In the 3rd position of arms, one arm is __________ while the other is __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc23" value="a"><span>Overhead; sideward</span></label>
+        <label><input type="radio" name="mc23" value="b"><span>In front of chest; overhead</span></label>
+        <label><input type="radio" name="mc23" value="c"><span>Sideward; in front of chest</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc24">
+      <p>24. In the 4th position of arms, one arm is __________ and the other is __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc24" value="a"><span>Overhead; sideward</span></label>
+        <label><input type="radio" name="mc24" value="b"><span>Overhead; in front of the chest</span></label>
+        <label><input type="radio" name="mc24" value="c"><span>Both overhead</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc25">
+      <p>25. In the 5th position of arms, both arms are __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc25" value="a"><span>Held at waist level</span></label>
+        <label><input type="radio" name="mc25" value="b"><span>Circled overhead, fingertips almost touching</span></label>
+        <label><input type="radio" name="mc25" value="c"><span>Crossed over the chest</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc26">
+      <p>26. In the 1st position of feet, the heels are __________ and the toes are turned __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc26" value="a"><span>Together; outward forming a V-shape</span></label>
+        <label><input type="radio" name="mc26" value="b"><span>Apart; inward</span></label>
+        <label><input type="radio" name="mc26" value="c"><span>Touching; forward</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc27">
+      <p>27. In the 2nd position of feet, the feet are __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc27" value="a"><span>Heels together</span></label>
+        <label><input type="radio" name="mc27" value="b"><span>Crossed one in front of the other</span></label>
+        <label><input type="radio" name="mc27" value="c"><span>Stepped apart sideward, about a foot distance</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc28">
+      <p>28. In the 3rd position of feet, the heel of one foot is placed __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc28" value="a"><span>Behind the other foot's toes</span></label>
+        <label><input type="radio" name="mc28" value="b"><span>At the instep of the other foot</span></label>
+        <label><input type="radio" name="mc28" value="c"><span>Far away from the other foot</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc29">
+      <p>29. In the 4th position of feet, one foot is placed __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc29" value="a"><span>Behind the other foot's heel</span></label>
+        <label><input type="radio" name="mc29" value="b"><span>In front of the other foot, a step distance apart</span></label>
+        <label><input type="radio" name="mc29" value="c"><span>On top of the other foot</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc30">
+      <p>30. In the 5th position of feet, the heel of one foot is placed __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc30" value="a"><span>A few inches apart</span></label>
+        <label><input type="radio" name="mc30" value="b"><span>Directly in front of and touching the toe of the other foot</span></label>
+        <label><input type="radio" name="mc30" value="c"><span>Behind the heel of the other foot</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc31">
+      <p>31. How many fundamental arm positions are there in Philippine folk dance? <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc31" value="a"><span>3</span></label>
+        <label><input type="radio" name="mc31" value="b"><span>5</span></label>
+        <label><input type="radio" name="mc31" value="c"><span>7</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc32">
+      <p>32. In 1st position of arms, the hands should be at about __________ level. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc32" value="a"><span>Shoulder</span></label>
+        <label><input type="radio" name="mc32" value="b"><span>Waist</span></label>
+        <label><input type="radio" name="mc32" value="c"><span>Chest</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc33">
+      <p>33. In the 2nd position of feet, the distance between the feet is approximately __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc33" value="a"><span>One foot length apart</span></label>
+        <label><input type="radio" name="mc33" value="b"><span>Three feet apart</span></label>
+        <label><input type="radio" name="mc33" value="c"><span>Six inches apart</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc34">
+      <p>34. In the 4th position of feet, the front foot is placed one step distance in __________ of the back foot. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc34" value="a"><span>Back</span></label>
+        <label><input type="radio" name="mc34" value="b"><span>Front</span></label>
+        <label><input type="radio" name="mc34" value="c"><span>Sideward</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc35">
+      <p>35. Which position of arms has both arms raised overhead with fingertips almost touching? <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc35" value="a"><span>3rd position</span></label>
+        <label><input type="radio" name="mc35" value="b"><span>4th position</span></label>
+        <label><input type="radio" name="mc35" value="c"><span>5th position</span></label>
+      </div>
+    </div>
+
+    <!-- Q36-50: Dance Steps -->
+    <div class="question" data-q="mc36">
+      <p>36. The "Plain Polka" step follows which pattern? <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc36" value="a"><span>Step-close-step-hop</span></label>
+        <label><input type="radio" name="mc36" value="b"><span>Step-point-step-point</span></label>
+        <label><input type="radio" name="mc36" value="c"><span>Slide-close-slide-close</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc37">
+      <p>37. The "Hop Polka" differs from the Plain Polka because it __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc37" value="a"><span>Includes a hop after each step-close-step</span></label>
+        <label><input type="radio" name="mc37" value="b"><span>Uses only walking steps</span></label>
+        <label><input type="radio" name="mc37" value="c"><span>Has no rhythm pattern</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc38">
+      <p>38. The "Heel and Toe Polka" starts with __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc38" value="a"><span>A heel place then toe point</span></label>
+        <label><input type="radio" name="mc38" value="b"><span>A hop then a turn</span></label>
+        <label><input type="radio" name="mc38" value="c"><span>A leap forward</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc39">
+      <p>39. The "Slide Polka" or "Chass&eacute;" involves __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc39" value="a"><span>Slide-close-slide-hop</span></label>
+        <label><input type="radio" name="mc39" value="b"><span>Step-hop-step-hop</span></label>
+        <label><input type="radio" name="mc39" value="c"><span>Walk-walk-walk-turn</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc40">
+      <p>40. The "Native Waltz" step follows a __________ pattern. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc40" value="a"><span>Three-count step: step-close-step</span></label>
+        <label><input type="radio" name="mc40" value="b"><span>Four-count step: step-step-step-step</span></label>
+        <label><input type="radio" name="mc40" value="c"><span>Two-count step: hop-leap</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc41">
+      <p>41. The "Waltz Balance" is performed in a __________ count. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc41" value="a"><span>2-count rhythm</span></label>
+        <label><input type="radio" name="mc41" value="b"><span>3-count rhythm with rise and fall</span></label>
+        <label><input type="radio" name="mc41" value="c"><span>4-count rhythm</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc42">
+      <p>42. The "Cross Waltz" involves __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc42" value="a"><span>Crossing one foot over the other on the first count</span></label>
+        <label><input type="radio" name="mc42" value="b"><span>Hopping on one foot</span></label>
+        <label><input type="radio" name="mc42" value="c"><span>Sliding sideways</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc43">
+      <p>43. The "Sway Balance" is characterized by __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc43" value="a"><span>A swaying body movement with a step pattern</span></label>
+        <label><input type="radio" name="mc43" value="b"><span>Jumping up and down</span></label>
+        <label><input type="radio" name="mc43" value="c"><span>Standing still in place</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc44">
+      <p>44. "Bacui" or "Bakji" is a dance step from __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc44" value="a"><span>Northern Philippines</span></label>
+        <label><input type="radio" name="mc44" value="b"><span>Mindanao</span></label>
+        <label><input type="radio" name="mc44" value="c"><span>Visayas</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc45">
+      <p>45. "Bicking" is a step that resembles __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc45" value="a"><span>A galloping horse</span></label>
+        <label><input type="radio" name="mc45" value="b"><span>A walking pace</span></label>
+        <label><input type="radio" name="mc45" value="c"><span>A spinning top</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc46">
+      <p>46. The "Change Step" is a __________ count step. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc46" value="a"><span>Two-count step: step-close-step</span></label>
+        <label><input type="radio" name="mc46" value="b"><span>Three-count step</span></label>
+        <label><input type="radio" name="mc46" value="c"><span>Four-count step</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc47">
+      <p>47. The "Cross Change Step" is performed by __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc47" value="a"><span>Crossing the feet while changing weight</span></label>
+        <label><input type="radio" name="mc47" value="b"><span>Hopping on both feet</span></label>
+        <label><input type="radio" name="mc47" value="c"><span>Turning in place</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc48">
+      <p>48. "Contra-ganza" is a step that involves __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc48" value="a"><span>A crossing and shifting of weight with a hop</span></label>
+        <label><input type="radio" name="mc48" value="b"><span>A slow walk forward</span></label>
+        <label><input type="radio" name="mc48" value="c"><span>A simple two-step</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc49">
+      <p>49. "Mazurka" is a dance step that originated from __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc49" value="a"><span>Poland</span></label>
+        <label><input type="radio" name="mc49" value="b"><span>Spain</span></label>
+        <label><input type="radio" name="mc49" value="c"><span>Germany</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="mc50">
+      <p>50. "Paso Espa&ntilde;ol" is a dance step that means __________. <span class="points">(1 pt)</span></p>
+      <div class="mc-options">
+        <label><input type="radio" name="mc50" value="a"><span>Spanish step</span></label>
+        <label><input type="radio" name="mc50" value="b"><span>French step</span></label>
+        <label><input type="radio" name="mc50" value="c"><span>German step</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: IDENTIFICATION - 30 items x 1pt = 30pts -->
+  <div class="exam-section sec-id" id="examSection2" style="display:none">
+    <h3>Section 2: Identification <span>(30 items x 1 pt = 30 pts)</span></h3>
+
+    <!-- Q51-65: Dance Step Pattern Identification -->
+    <div class="question" data-q="id51">
+      <p>51. Identify the dance step: Step-close-step-hop pattern in 2/4 time. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id51" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id52">
+      <p>52. Identify the dance step: Step-hop-step-hop pattern with polka rhythm. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id52" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id53">
+      <p>53. Identify the dance step: Heel place, toe point, then step-close-step-hop. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id53" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id54">
+      <p>54. Identify the dance step: Slide-close-slide-hop or chass&eacute; movement. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id54" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id55">
+      <p>55. Identify the dance step: A three-count waltz pattern performed in place. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id55" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id56">
+      <p>56. Identify the dance step: A waltz with rise and fall movement. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id56" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id57">
+      <p>57. Identify the dance step: Cross one foot over the other on the first count of the waltz. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id57" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id58">
+      <p>58. Identify the dance step: A swaying movement with step-close-step pattern. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id58" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id59">
+      <p>59. Identify the dance step: A two-count step: step-close-step used to change direction. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id59" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id60">
+      <p>60. Identify the dance step: Cross the feet while shifting weight with a hop. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id60" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id61">
+      <p>61. Identify the dance step: A step resembling a galloping horse movement. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id61" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id62">
+      <p>62. Identify the dance step: Point one foot forward then close it beside the other. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id62" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id63">
+      <p>63. Identify the dance step: Bend one knee and point the other foot forward alternately. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id63" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id64">
+      <p>64. Identify the dance step: A crossing step that shifts weight from one foot to the other. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id64" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id65">
+      <p>65. Identify the dance step: A step with a strong accent on the second beat. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id65" placeholder="Type your answer here...">
+    </div>
+
+    <!-- Q66-75: Dance Term Definition Identification -->
+    <div class="question" data-q="id66">
+      <p>66. Identify the term: A bowing or greeting gesture at the beginning or end of a dance. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id66" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id67">
+      <p>67. Identify the term: Placing one arm in front of the waist and one behind, alternating. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id67" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id68">
+      <p>68. Identify the term: Crossing one foot over the other with arms crossed. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id68" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id69">
+      <p>69. Identify the term: A movement where dancers pass right shoulder to right shoulder then back to back. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id69" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id70">
+      <p>70. Identify the term: A wrist rotation or hand waving gesture. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id70" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id71">
+      <p>71. Identify the term: The leader or head of a group in a folk dance. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id71" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id72">
+      <p>72. Identify the term: A clapping of the hands as part of the dance. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id72" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id73">
+      <p>73. Identify the term: A dance step meaning "Spanish step." <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id73" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id74">
+      <p>74. Identify the term: A dance step that originated from Poland. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id74" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id75">
+      <p>75. Identify the term: Arms placed in a circle in front of the chest, fingertips apart. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id75" placeholder="Type your answer here...">
+    </div>
+
+    <!-- Q76-80: HRF Component Identification -->
+    <div class="question" data-q="id76">
+      <p>76. Identify the HRF component: The ability to sustain prolonged physical activity. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id76" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id77">
+      <p>77. Identify the HRF component: The ratio of fat mass to lean body mass. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id77" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id78">
+      <p>78. Identify the HRF component: The range of motion of a joint. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id78" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id79">
+      <p>79. Identify the HRF component: The ability of a muscle to exert force. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id79" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id80">
+      <p>80. Identify the HRF component: The ability of muscles to perform repeated contractions. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id80" placeholder="Type your answer here...">
+    </div>
+  </div>
+
+  <!-- SECTION 3: DRAWING - 5 items x 2pts = 10pts -->
+  <div class="exam-section sec-draw" id="examSection3" style="display:none">
+    <h3>Section 3: Drawing <span>(5 items x 2 pts = 10 pts)</span></h3>
+
+    <div class="question" data-q="draw1">
+      <p>1. Draw a figure showing <strong>1st Position - FULL BODY</strong> (Arms: curved in front of chest, fingertips apart. Feet: heels together, toes apart in V-shape). <span class="points">(2 pts)</span></p>
+      <div class="draw-area">
+        <div class="draw-ref">
+          <img src="1st Position.jpg" alt="1st Position Reference">
+          <p>Reference</p>
+        </div>
+        <div class="draw-pad">
+          <canvas id="canvas1" width="400" height="400"></canvas>
+          <div class="draw-tools">
+            <button class="active" onclick="setTool(this,1,'pen')">Pen</button>
+            <button onclick="setTool(this,1,'eraser')">Eraser</button>
+            <button onclick="clearCanvas(1)">Clear</button>
+            <input type="range" min="1" max="10" value="3" onchange="setSize(1,this.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" data-q="draw2">
+      <p>2. Draw a figure showing <strong>2nd Position - FULL BODY</strong> (Arms: open sideward at shoulder level. Feet: stepped apart sideward). <span class="points">(2 pts)</span></p>
+      <div class="draw-area">
+        <div class="draw-ref">
+          <img src="2st Position.jpg" alt="2nd Position Reference">
+          <p>Reference</p>
+        </div>
+        <div class="draw-pad">
+          <canvas id="canvas2" width="400" height="400"></canvas>
+          <div class="draw-tools">
+            <button class="active" onclick="setTool(this,2,'pen')">Pen</button>
+            <button onclick="setTool(this,2,'eraser')">Eraser</button>
+            <button onclick="clearCanvas(2)">Clear</button>
+            <input type="range" min="1" max="10" value="3" onchange="setSize(2,this.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" data-q="draw3">
+      <p>3. Draw a figure showing <strong>3rd Position - FULL BODY</strong> (Arms: one arm overhead, one sideward. Feet: heel to instep). <span class="points">(2 pts)</span></p>
+      <div class="draw-area">
+        <div class="draw-ref">
+          <img src="3st Position.jpg" alt="3rd Position Reference">
+          <p>Reference</p>
+        </div>
+        <div class="draw-pad">
+          <canvas id="canvas3" width="400" height="400"></canvas>
+          <div class="draw-tools">
+            <button class="active" onclick="setTool(this,3,'pen')">Pen</button>
+            <button onclick="setTool(this,3,'eraser')">Eraser</button>
+            <button onclick="clearCanvas(3)">Clear</button>
+            <input type="range" min="1" max="10" value="3" onchange="setSize(3,this.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" data-q="draw4">
+      <p>4. Draw a figure showing <strong>4th Position - FULL BODY</strong> (Arms: one arm overhead, one in front. Feet: one ahead of other). <span class="points">(2 pts)</span></p>
+      <div class="draw-area">
+        <div class="draw-ref">
+          <img src="4st Position.jpg" alt="4th Position Reference">
+          <p>Reference</p>
+        </div>
+        <div class="draw-pad">
+          <canvas id="canvas4" width="400" height="400"></canvas>
+          <div class="draw-tools">
+            <button class="active" onclick="setTool(this,4,'pen')">Pen</button>
+            <button onclick="setTool(this,4,'eraser')">Eraser</button>
+            <button onclick="clearCanvas(4)">Clear</button>
+            <input type="range" min="1" max="10" value="3" onchange="setSize(4,this.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" data-q="draw5">
+      <p>5. Draw a figure showing <strong>5th Position - FULL BODY</strong> (Arms: both arms overhead. Feet: heel touching toe). <span class="points">(2 pts)</span></p>
+      <div class="draw-area">
+        <div class="draw-ref">
+          <img src="5st Position.jpg" alt="5th Position Reference">
+          <p>Reference</p>
+        </div>
+        <div class="draw-pad">
+          <canvas id="canvas5" width="400" height="400"></canvas>
+          <div class="draw-tools">
+            <button class="active" onclick="setTool(this,5,'pen')">Pen</button>
+            <button onclick="setTool(this,5,'eraser')">Eraser</button>
+            <button onclick="clearCanvas(5)">Clear</button>
+            <input type="range" min="1" max="10" value="3" onchange="setSize(5,this.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: SHORT ANSWER - 10 items x 1pt = 10pts -->
+  <div class="exam-section sec-essay" id="examSection4" style="display:none">
+    <h3>Section 4: Short Answer <span>(10 items x 1 pt = 10 pts, auto-graded by keyword+length)</span></h3>
+
+    <div class="question" data-q="sa91">
+      <p>91. Describe the five components of health-related fitness and explain how each contributes to overall physical well-being. <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa91" placeholder="Write your answer here..." data-keywords="cardiorespiratory,endurance,muscular,strength,flexibility,body,composition,heart,lungs,joints,activity" data-minlen="100"></textarea>
+    </div>
+
+    <div class="question" data-q="sa92">
+      <p>92. Explain the difference between muscular strength and muscular endurance. Give one example activity for each. <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa92" placeholder="Write your answer here..." data-keywords="muscular,strength,endurance,force,contraction,repetition,weight,lifting,running,plank,push" data-minlen="80"></textarea>
+    </div>
+
+    <div class="question" data-q="sa93">
+      <p>93. Describe the five fundamental positions of the arms in Philippine folk dance. How do they differ from each other? <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa93" placeholder="Write your answer here..." data-keywords="arms,positions,first,second,third,fourth,fifth,circle,overhead,sideward,chest,shoulder" data-minlen="100"></textarea>
+    </div>
+
+    <div class="question" data-q="sa94">
+      <p>94. Compare and contrast the Plain Polka and the Hop Polka dance steps. What makes them similar and different? <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa94" placeholder="Write your answer here..." data-keywords="polka,step,hop,close,pattern,2/4,rhythm,similar,difference,hop,hop" data-minlen="80"></textarea>
+    </div>
+
+    <div class="question" data-q="sa95">
+      <p>95. Describe the role of "Saludo" and "Kumintang" in Philippine folk dances. Why are these gestures important in performing folk dances? <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa95" placeholder="Write your answer here..." data-keywords="saludo,greeting,bow,kumintang,wrist,hand,wave,gesture,culture,tradition,respect" data-minlen="80"></textarea>
+    </div>
+
+    <div class="question" data-q="sa96">
+      <p>96. Create a simple 8-count dance sequence using at least 3 different dance steps you have learned. Identify each step used. <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa96" placeholder="Write your answer here..." data-keywords="sequence,dance,step,polka,waltz,change,touch,point,count,rhythm,create" data-minlen="100"></textarea>
+    </div>
+
+    <div class="question" data-q="sa97">
+      <p>97. If you were to design a fitness routine for a beginner using folk dance movements, what components of HRF would you include and why? <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa97" placeholder="Write your answer here..." data-keywords="fitness,routine,beginner,HRF,cardiorespiratory,flexibility,muscular,endurance,warm,cool,stretch" data-minlen="100"></textarea>
+    </div>
+
+    <div class="question" data-q="sa98">
+      <p>98. Explain the importance of proper body alignment and posture when performing the five fundamental positions of the feet. <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa98" placeholder="Write your answer here..." data-keywords="alignment,posture,feet,positions,balance,injury,technique,form,correct,proper" data-minlen="80"></textarea>
+    </div>
+
+    <div class="question" data-q="sa99">
+      <p>99. Choose one Philippine folk dance and explain how it incorporates the dance terms and steps you have learned. <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa99" placeholder="Write your answer here..." data-keywords="folk,dance,philippine,steps,terms,performance,culture,tradition,movement,execute" data-minlen="100"></textarea>
+    </div>
+
+    <div class="question" data-q="sa100">
+      <p>100. How can you apply the knowledge of health-related fitness components in your daily life beyond the dance classroom? Give specific examples. <span class="points">(1 pt)</span></p>
+      <textarea class="essay-area" id="sa100" placeholder="Write your answer here..." data-keywords="daily,life,application,fitness,health,exercise,activity,lifestyle,habits,wellness" data-minlen="100"></textarea>
+    </div>
+  </div>
+
+  <!-- Prev/Next Navigation -->
+  <div class="exam-section-nav">
+    <button class="btn-prev" onclick="prevExamSection()" disabled>Previous</button>
+    <span class="section-indicator">Section 1 of 4</span>
+    <button class="btn-next" onclick="nextExamSection()">Next</button>
+  </div>
+
+  <div class="submit-wrapper">
+    <button class="submit-btn" onclick="submitExam()">Submit Exam</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="resultsContainer">
+  <div class="results-card">
+    <h2>Exam Results</h2>
+    <div class="score-circle" id="scoreCircle">
+      <span id="scoreNum">0</span>
+      <small>out of 100</small>
+    </div>
+    <p id="scoreMsg"></p>
+    <div class="breakdown" id="scoreBreakdown"></div>
+    <div class="result-btns">
+      <button class="btn-review" onclick="showReviewer()">Back to Reviewer</button>
+      <button class="btn-retake" onclick="retakeExam()">Retake Exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- Back to Top Button -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#9650;</button>
+
+<script>
+// ===== TIMER =====
+var timerInterval, seconds = 0;
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(function() {
+    seconds++;
+    var m = Math.floor(seconds / 60);
+    var s = seconds % 60;
+    document.getElementById('timerDisplay').textContent =
+      (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }, 1000);
+}
+
+// ===== PROGRESS BAR =====
+function updateProgress() {
+  var total = 100;
+  var filled = 0;
+  for (var i = 1; i <= 50; i++) {
+    var radios = document.getElementsByName('mc' + i);
+    for (var j = 0; j < radios.length; j++) {
+      if (radios[j].checked) { filled++; break; }
+    }
+  }
+  for (var i = 51; i <= 80; i++) {
+    var inp = document.getElementById('id' + i);
+    if (inp && inp.value.trim() !== '') filled++;
+  }
+  for (var i = 1; i <= 5; i++) {
+    if (canvasHasContent('canvas' + i)) filled++;
+  }
+  for (var i = 91; i <= 100; i++) {
+    var ta = document.getElementById('sa' + i);
+    if (ta && ta.value.trim() !== '') filled++;
+  }
+  var pct = (filled / total) * 100;
+  var bar = document.getElementById('progressBar');
+  if (bar) {
+    bar.style.width = pct + '%';
+    bar.textContent = Math.round(pct) + '%';
+  }
+}
+document.addEventListener('input', updateProgress);
+document.addEventListener('change', updateProgress);
+
+// ===== EXAM SECTION NAVIGATION =====
+var currentExamSection = 1;
+var canvasesInitialized = false;
+function showExamSection(n) {
+  currentExamSection = n;
+  for (var i = 1; i <= 4; i++) {
+    var sec = document.getElementById('examSection' + i);
+    if (sec) sec.style.display = 'none';
+  }
+  var target = document.getElementById('examSection' + n);
+  if (target) target.style.display = 'block';
+  if (n === 3 && !canvasesInitialized) {
+    initAllCanvases();
+    canvasesInitialized = true;
+  }
+  var tabs = document.querySelectorAll('.exam-tab');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove('active');
+    if (i === n - 1) tabs[i].classList.add('active');
+  }
+  var ind = document.querySelector('.section-indicator');
+  if (ind) ind.textContent = 'Section ' + n + ' of 4';
+  var prevBtn = document.querySelector('.btn-prev');
+  var nextBtn = document.querySelector('.btn-next');
+  if (prevBtn) prevBtn.disabled = (n === 1);
+  if (nextBtn) nextBtn.textContent = (n === 4) ? 'Submit' : 'Next';
+  window.scrollTo(0, 0);
+}
+function prevExamSection() { if (currentExamSection > 1) showExamSection(currentExamSection - 1); }
+function nextExamSection() {
+  if (currentExamSection < 4) showExamSection(currentExamSection + 1);
+  else submitExam();
+}
+
+// ===== REVIEWER NAVIGATION =====
+function smoothTo(e, id) {
+  e.preventDefault();
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// IntersectionObserver for active nav highlighting
+document.addEventListener('DOMContentLoaded', function() {
+  var navLinks = document.querySelectorAll('#reviewerNav .nav-link');
+  var sections = ['sec-fitness', 'sec-terms', 'sec-positions', 'sec-steps'];
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute('id');
+          navLinks.forEach(function(link) {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+          });
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '-80px 0px -60% 0px' });
+    sections.forEach(function(sid) {
+      var el = document.getElementById(sid);
+      if (el) observer.observe(el);
+    });
+  }
+});
+
+// ===== BACK TO TOP =====
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('backToTop');
+  if (btn) {
+    if (window.scrollY > 400) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  }
+});
+
+// ===== START / SHOW / HIDE =====
+function startExam() {
+  var reviewer = document.getElementById('reviewerContainer');
+  var reviewerNav = document.getElementById('reviewerNav');
+  var exam = document.getElementById('examContainer');
+  var results = document.getElementById('resultsContainer');
+  if (reviewer) reviewer.style.display = 'none';
+  if (reviewerNav) reviewerNav.style.display = 'none';
+  if (exam) exam.style.display = 'block';
+  if (results) results.style.display = 'none';
+  startTimer();
+  canvasesInitialized = false;
+  showExamSection(1);
+  updateProgress();
+}
+
+function showReviewer() {
+  var reviewer = document.getElementById('reviewerContainer');
+  var reviewerNav = document.getElementById('reviewerNav');
+  var exam = document.getElementById('examContainer');
+  var results = document.getElementById('resultsContainer');
+  if (reviewer) reviewer.style.display = 'block';
+  if (reviewerNav) reviewerNav.style.display = 'flex';
+  if (exam) exam.style.display = 'none';
+  if (results) results.style.display = 'none';
+  clearInterval(timerInterval);
+}
+
+function retakeExam() {
+  var radios = document.querySelectorAll('input[type="radio"]');
+  for (var i = 0; i < radios.length; i++) radios[i].checked = false;
+  var inputs = document.querySelectorAll('#examContainer input[type="text"]');
+  for (var i = 0; i < inputs.length; i++) inputs[i].value = '';
+  var tas = document.querySelectorAll('#examContainer textarea');
+  for (var i = 0; i < tas.length; i++) tas[i].value = '';
+  for (var i = 1; i <= 5; i++) clearCanvas(i);
+  clearInterval(timerInterval);
+  seconds = 0;
+  var td = document.getElementById('timerDisplay');
+  if (td) td.textContent = '00:00';
+  canvasesInitialized = false;
+  startExam();
+}
+
+// ===== ANSWER KEYS =====
+var mcAnswers = {
+  mc1:'b',mc2:'c',mc3:'b',mc4:'a',mc5:'b',
+  mc6:'b',mc7:'c',mc8:'a',mc9:'b',mc10:'c',
+  mc11:'a',mc12:'a',mc13:'b',mc14:'a',mc15:'a',
+  mc16:'a',mc17:'b',mc18:'b',mc19:'b',mc20:'a',
+  mc21:'b',mc22:'c',mc23:'a',mc24:'b',mc25:'b',
+  mc26:'a',mc27:'c',mc28:'b',mc29:'b',mc30:'b',
+  mc31:'b',mc32:'c',mc33:'a',mc34:'b',mc35:'c',
+  mc36:'a',mc37:'a',mc38:'a',mc39:'a',mc40:'a',
+  mc41:'b',mc42:'a',mc43:'a',mc44:'b',mc45:'a',
+  mc46:'a',mc47:'a',mc48:'a',mc49:'a',mc50:'a'
+};
+
+var idAnswers = {
+  id51:['plain polka','polka'],
+  id52:['hop polka','hop polka'],
+  id53:['heel and toe polka','heel & toe polka','heel and toe'],
+  id54:['slide polka','chasse','chassé'],
+  id55:['native waltz','native waltz'],
+  id56:['waltz balance'],
+  id57:['cross waltz'],
+  id58:['sway balance'],
+  id59:['change step'],
+  id60:['contra-ganza','contraganza','contra ganza','cross change step'],
+  id61:['bicking','bicking'],
+  id62:['touch step'],
+  id63:['bleking step','bleking'],
+  id64:['sarok'],
+  id65:['redoba'],
+  id66:['saludo'],
+  id67:['hayon-hayon','hayon hayon'],
+  id68:['sarok'],
+  id69:['do-si-do','dos-a-dos','dosado','do si do'],
+  id70:['kumintang'],
+  id71:['cabesang','cabesans'],
+  id72:['papuri'],
+  id73:['paso español','paso espanol','spanish step'],
+  id74:['mazurka'],
+  id75:['first position','1st position'],
+  id76:['cardiorespiratory endurance','cardiovascular endurance','endurance'],
+  id77:['body composition'],
+  id78:['flexibility'],
+  id79:['muscular strength'],
+  id80:['muscular endurance']
+};
+
+// ===== SHORT ANSWER AUTO-GRADING =====
+function gradeShortAnswer(id) {
+  var ta = document.getElementById(id);
+  if (!ta) return 0;
+  var text = ta.value.trim();
+  var keywords = (ta.getAttribute('data-keywords') || '').split(',');
+  var minLen = parseInt(ta.getAttribute('data-minlen') || '80', 10);
+  if (text.length < minLen) return 0;
+  var lower = text.toLowerCase();
+  var matched = 0;
+  for (var k = 0; k < keywords.length; k++) {
+    var kw = keywords[k].trim().toLowerCase();
+    if (kw && lower.indexOf(kw) !== -1) matched++;
+  }
+  var threshold = Math.ceil(keywords.length * 0.3);
+  if (threshold < 3) threshold = 3;
+  return matched >= threshold ? 1 : 0;
+}
+
+// ===== SUBMIT & GRADE =====
+function submitExam() {
+  var unanswered = [];
+  for (var i = 1; i <= 50; i++) {
+    var radios = document.getElementsByName('mc' + i);
+    var answered = false;
+    for (var j = 0; j < radios.length; j++) {
+      if (radios[j].checked) { answered = true; break; }
+    }
+    if (!answered) unanswered.push('MC #' + i);
+  }
+  for (var i = 51; i <= 80; i++) {
+    var inp = document.getElementById('id' + i);
+    if (!inp || inp.value.trim() === '') unanswered.push('ID #' + i);
+  }
+  for (var i = 1; i <= 5; i++) {
+    if (!canvasHasContent('canvas' + i)) unanswered.push('Drawing #' + i);
+  }
+  for (var i = 91; i <= 100; i++) {
+    var ta = document.getElementById('sa' + i);
+    if (!ta || ta.value.trim() === '') unanswered.push('Short Answer #' + i);
+  }
+  if (unanswered.length > 0) {
+    if (!confirm('You have ' + unanswered.length + ' unanswered question(s):\n' +
+      unanswered.slice(0, 20).join(', ') + (unanswered.length > 20 ? '...' : '') +
+      '\n\nSubmit anyway?')) return;
+  }
+  clearInterval(timerInterval);
+
+  var mcScore = 0;
+  for (var i = 1; i <= 50; i++) {
+    var radios = document.getElementsByName('mc' + i);
+    for (var j = 0; j < radios.length; j++) {
+      if (radios[j].checked && radios[j].value === mcAnswers['mc' + i]) mcScore++;
+    }
+  }
+
+  var idScore = 0;
+  for (var i = 51; i <= 80; i++) {
+    var inp = document.getElementById('id' + i);
+    if (inp) {
+      var ans = inp.value.trim().toLowerCase();
+      var accepted = idAnswers['id' + i];
+      for (var k = 0; k < accepted.length; k++) {
+        if (ans === accepted[k]) { idScore++; break; }
+      }
+    }
+  }
+
+  var drawScore = 0;
+  for (var i = 1; i <= 5; i++) {
+    if (canvasHasContent('canvas' + i)) drawScore++;
+  }
+
+  var saScore = 0;
+  for (var i = 91; i <= 100; i++) {
+    saScore += gradeShortAnswer('sa' + i);
+  }
+
+  var total = mcScore + idScore + (drawScore * 2) + saScore;
+  var cls = 'poor';
+  var msg = 'Keep practicing!';
+  if (total >= 90) { cls = 'excellent'; msg = 'Excellent! Outstanding performance!'; }
+  else if (total >= 70) { cls = 'good'; msg = 'Good job! Keep it up!'; }
+  else if (total >= 50) { cls = 'average'; msg = 'Not bad, but there is room for improvement.'; }
+
+  var m = Math.floor(seconds / 60);
+  var s = seconds % 60;
+  var timeStr = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+
+  var reviewerNav = document.getElementById('reviewerNav');
+  var reviewer = document.getElementById('reviewerContainer');
+  var exam = document.getElementById('examContainer');
+  var results = document.getElementById('resultsContainer');
+  if (reviewerNav) reviewerNav.style.display = 'none';
+  if (reviewer) reviewer.style.display = 'none';
+  if (exam) exam.style.display = 'none';
+  if (results) {
+    document.getElementById('scoreNum').textContent = total;
+    var circle = document.getElementById('scoreCircle');
+    circle.className = 'score-circle ' + cls;
+    document.getElementById('scoreMsg').textContent = msg;
+    document.getElementById('scoreBreakdown').innerHTML =
+      '<div class="breakdown-row"><span>Section 1: Multiple Choice</span><span>' + mcScore + ' / 50</span></div>' +
+      '<div class="breakdown-row"><span>Section 2: Identification</span><span>' + idScore + ' / 30</span></div>' +
+      '<div class="breakdown-row"><span>Section 3: Drawing (5 items)</span><span>' + (drawScore * 2) + ' / 10</span></div>' +
+      '<div class="breakdown-row"><span>Section 4: Short Answer</span><span>' + saScore + ' / 10</span></div>' +
+      '<div class="breakdown-row total"><span>Time Elapsed</span><span>' + timeStr + '</span></div>';
+    results.style.display = 'block';
+  }
+  window.scrollTo(0, 0);
+}
+
+// ===== CANVAS DRAWING SYSTEM =====
+var canvasData = {};
+
+function initCanvas(num) {
+  var id = 'canvas' + num;
+  var canvas = document.getElementById(id);
+  if (!canvas) return;
+  if (canvasData[id] && canvasData[id].initialized) return;
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  canvasData[id] = { tool: 'pen', size: 3, drawing: false, lastX: 0, lastY: 0, initialized: true };
+
+  function getPos(e) {
+    var rect = canvas.getBoundingClientRect();
+    var clientX, clientY;
+    if (e.touches && e.touches.length > 0) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+    return {
+      x: (clientX - rect.left) * (canvas.width / rect.width),
+      y: (clientY - rect.top) * (canvas.height / rect.height)
+    };
+  }
+
+  function startDraw(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    canvasData[id].drawing = true;
+    var pos = getPos(e);
+    canvasData[id].lastX = pos.x;
+    canvasData[id].lastY = pos.y;
+  }
+
+  function doDraw(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!canvasData[id].drawing) return;
+    var pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(canvasData[id].lastX, canvasData[id].lastY);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.strokeStyle = canvasData[id].tool === 'eraser' ? '#ffffff' : '#000000';
+    ctx.lineWidth = canvasData[id].tool === 'eraser' ? canvasData[id].size * 4 : canvasData[id].size;
+    ctx.stroke();
+    canvasData[id].lastX = pos.x;
+    canvasData[id].lastY = pos.y;
+    updateProgress();
+  }
+
+  function stopDraw(e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    canvasData[id].drawing = false;
+  }
+
+  canvas.addEventListener('pointerdown', startDraw);
+  canvas.addEventListener('pointermove', doDraw);
+  canvas.addEventListener('pointerup', stopDraw);
+  canvas.addEventListener('pointerleave', stopDraw);
+  canvas.addEventListener('pointercancel', stopDraw);
+}
+
+function initAllCanvases() {
+  for (var i = 1; i <= 5; i++) {
+    initCanvas(i);
+  }
+}
+
+function setTool(btn, canvasNum, tool) {
+  var id = 'canvas' + canvasNum;
+  if (canvasData[id]) canvasData[id].tool = tool;
+  var toolbar = btn.parentElement;
+  if (toolbar) {
+    var btns = toolbar.querySelectorAll('button');
+    for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+  }
+  btn.classList.add('active');
+}
+
+function setSize(canvasNum, val) {
+  var id = 'canvas' + canvasNum;
+  if (canvasData[id]) canvasData[id].size = parseInt(val, 10);
+}
+
+function clearCanvas(canvasNum) {
+  var id = 'canvas' + canvasNum;
+  var canvas = document.getElementById(id);
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  updateProgress();
+}
+
+// ===== DRAWING AUTO-GRADING =====
+function canvasHasContent(canvasId) {
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return false;
+  var ctx = canvas.getContext('2d');
+  var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  var data = imageData.data;
+  var nonWhite = 0;
+  for (var i = 0; i < data.length; i += 4) {
+    if (data[i] < 250 || data[i+1] < 250 || data[i+2] < 250) nonWhite++;
+  }
+  return nonWhite > 50;
+}
+</script>
+
+</body>
+</html>
