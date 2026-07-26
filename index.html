@@ -875,52 +875,62 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
 
     <div class="question" data-q="app1">
       <p>1. Write the step pattern for <strong>Plain Polka</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app1" placeholder="Write the step pattern here..." data-keywords="step,close,step" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app1" placeholder="Write the step pattern here..." 
+data-keywords="step,close,step,polka,plain" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app2">
       <p>2. Write the step pattern for <strong>Hop Polka</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app2" placeholder="Write the step pattern here..." data-keywords="hop,step,close,step" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app2" placeholder="Write the step pattern here..." 
+data-keywords="hop,step,close,step,polka" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app3">
       <p>3. Write the step pattern for <strong>Heel and Toe Polka</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app3" placeholder="Write the step pattern here..." data-keywords="heel,toe,step,close" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app3" placeholder="Write the step pattern here..." 
+data-keywords="heel,toe,step,close,polka" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app4">
       <p>4. Write the step pattern for <strong>Slide Polka</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app4" placeholder="Write the step pattern here..." data-keywords="slide,close,step" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app4" placeholder="Write the step pattern here..." 
+data-keywords="slide,close,step,polka" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app5">
       <p>5. Write the step pattern for <strong>Native Waltz</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app5" placeholder="Write the step pattern here..." data-keywords="step,close,step" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app5" placeholder="Write the step pattern here..." 
+data-keywords="step,close,step,waltz,native" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app6">
       <p>6. Write the step pattern for <strong>Waltz Balance</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app6" placeholder="Write the step pattern here..." data-keywords="step,close,raise,heels" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app6" placeholder="Write the step pattern here..." 
+data-keywords="step,close,raise,heels,waltz,balance" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app7">
       <p>7. Write the step pattern for <strong>Cross Waltz</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app7" placeholder="Write the step pattern here..." data-keywords="cross,close,step" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app7" placeholder="Write the step pattern here..." 
+data-keywords="cross,close,step,waltz" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app8">
       <p>8. Write the step pattern for <strong>Sway Balance</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app8" placeholder="Write the step pattern here..." data-keywords="step,cross,point,waltz,raise,brush" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app8" placeholder="Write the step pattern here..." 
+data-keywords="step,cross,point,waltz,raise,brush,sway,balance" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app9">
       <p>9. Write the step pattern for <strong>Change Step</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app9" placeholder="Write the step pattern here..." data-keywords="step,close,step" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app9" placeholder="Write the step pattern here..." 
+data-keywords="step,close,step,change" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app10">
       <p>10. Write the step pattern for <strong>Mazurka</strong>. <span class="points">(4 pts)</span></p>
-      <textarea class="app-area" id="app10" placeholder="Write the step pattern here..." data-keywords="slide,cut,hop" data-minlen="50"></textarea>
+      <textarea class="app-area" id="app10" placeholder="Write the step pattern here..." 
+data-keywords="slide,cut,hop,mazurka" data-minlen="10"></textarea>
     </div>
   </div>
 
@@ -1249,7 +1259,7 @@ function gradeApplication(id) {
     var kw = keywords[k].trim().toLowerCase();
     if (kw && lower.indexOf(kw) !== -1) matched++;
   }
-  var threshold = Math.ceil(keywords.length * 0.5);
+  var threshold = Math.ceil(keywords.length * 0.3);
   if (threshold < 2) threshold = 2;
   return matched >= threshold ? 4 : 0;
 }
