@@ -125,6 +125,7 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
 .app-area{width:100%;min-height:80px;padding:14px;border:2px solid #ddd;border-radius:10px;font-size:.95em;font-family:inherit;resize:vertical;transition:all .3s}
 .app-area:focus{border-color:#27ae60;outline:none;box-shadow:0 0 0 3px rgba(39,174,96,.15)}
 .answer-hint{background:#e8f5e9;border:2px dashed #27ae60;border-radius:8px;padding:10px 14px;margin-top:8px;font-size:.88em;color:#1b5e20;line-height:1.5}
+.section-answer-box{background:#e3f2fd;border:2px solid #1976d2;border-radius:8px;padding:12px 16px;margin-bottom:18px;font-size:.88em;color:#0d47a1;line-height:1.6}
 
 /* Essay / Short Answer */
 .essay-area{width:100%;min-height:120px;padding:14px;border:2px solid #ddd;border-radius:10px;font-size:.95em;font-family:inherit;resize:vertical;transition:all .3s}
@@ -428,11 +429,11 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
   <!-- Exam Section Navigation Tabs -->
   <div class="exam-nav">
     <button class="exam-tab active" onclick="showExamSection(1)">MC (20)</button>
-    <button class="exam-tab" onclick="showExamSection(2)">Alt Response (10)</button>
-    <button class="exam-tab" onclick="showExamSection(3)">Identification (10)</button>
+    <button class="exam-tab" onclick="showExamSection(2)">Alt Response (20)</button>
+    <button class="exam-tab" onclick="showExamSection(3)">Identification (30)</button>
     <button class="exam-tab" onclick="showExamSection(4)">Drawing (5)</button>
-    <button class="exam-tab" onclick="showExamSection(5)">Application (10)</button>
-    <button class="exam-tab" onclick="showExamSection(6)">Essay (10)</button>
+    <button class="exam-tab" onclick="showExamSection(5)">Application (20)</button>
+    <button class="exam-tab" onclick="showExamSection(6)">Essay (5)</button>
   </div>
 
   <!-- SECTION 1: MULTIPLE CHOICE - 20 items x 1pt = 20pts -->
@@ -624,9 +625,10 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
     </div>
   </div>
 
-  <!-- SECTION 2: MODIFIED ALTERNATE RESPONSE - 10 items x 1pt = 10pts -->
+  <!-- SECTION 2: MODIFIED ALTERNATE RESPONSE - 20 items x 1pt = 20pts -->
   <div class="exam-section sec-ar" id="examSection2" style="display:none">
-    <h3>Section 2: Alternate Response <span>(10 items x 1 pt = 10 pts)</span></h3>
+    <h3>Section 2: Alternate Response <span>(20 items x 1 pt = 20 pts)</span></h3>
+    <div class="section-answer-box"><strong>Answer Key:</strong> 1. True | 2. False | 3. True | 4. True | 5. False | 6. True | 7. False | 8. True | 9. True | 10. True | 11. True | 12. False | 13. True | 14. False | 15. True | 16. True | 17. False | 18. True | 19. True | 20. False</div>
 
     <!-- Q1-3: Fitness concepts -->
     <div class="question" data-q="ar1">
@@ -710,11 +712,94 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
         <label><input type="radio" name="ar10" value="false"><span>False</span></label>
       </div>
     </div>
+
+    <!-- Q11-15: Locomotor skills & positions -->
+    <div class="question" data-q="ar11">
+      <p>11. Walking is considered a locomotor skill because the body travels from one place to another. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar11" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar11" value="false"><span>False</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="ar12">
+      <p>12. In 1st position of arms, both arms are raised overhead in a circle. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar12" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar12" value="false"><span>False</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="ar13">
+      <p>13. A gallop is a locomotor movement where one foot always leads. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar13" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar13" value="false"><span>False</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="ar14">
+      <p>14. Flexibility refers to the maximum amount of force a muscle can generate. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar14" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar14" value="false"><span>False</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="ar15">
+      <p>15. A skip combines a step and a hop in an alternating pattern. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar15" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar15" value="false"><span>False</span></label>
+      </div>
+    </div>
+
+    <!-- Q16-20: Dance steps & terms -->
+    <div class="question" data-q="ar16">
+      <p>16. The Touch Step involves touching the floor with the toes before transferring weight. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar16" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar16" value="false"><span>False</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="ar17">
+      <p>17. "Kumintang" is a foot movement where the heel is placed forward. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar17" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar17" value="false"><span>False</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="ar18">
+      <p>18. Body composition is one of the five components of health-related physical fitness. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar18" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar18" value="false"><span>False</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="ar19">
+      <p>19. A leap involves taking off from one foot and landing on the opposite foot. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar19" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar19" value="false"><span>False</span></label>
+      </div>
+    </div>
+
+    <div class="question" data-q="ar20">
+      <p>20. The Sway Balance step follows a two-count pattern. <span class="points">(1 pt)</span></p>
+      <div class="ar-options">
+        <label><input type="radio" name="ar20" value="true"><span>True</span></label>
+        <label><input type="radio" name="ar20" value="false"><span>False</span></label>
+      </div>
+    </div>
   </div>
 
-  <!-- SECTION 3: IDENTIFICATION - 10 items x 1pt = 10pts -->
+  <!-- SECTION 3: IDENTIFICATION - 30 items x 1pt = 30pts -->
   <div class="exam-section sec-id" id="examSection3" style="display:none">
-    <h3>Section 3: Identification <span>(10 items x 1 pt = 10 pts)</span></h3>
+    <h3>Section 3: Identification <span>(30 items x 1 pt = 30 pts)</span></h3>
+    <div class="section-answer-box"><strong>Answer Key:</strong> 1. Plain Polka | 2. Heel and Toe Polka | 3. Waltz Balance | 4. Cross Waltz | 5. Mazurka | 6. Masiwak | 7. Panadyak | 8. Cabeceras | 9. Fifth Position | 10. Fifth Position | 11. Hop Polka | 12. Slide Polka | 13. Native Waltz | 14. Change Step | 15. Sway Balance | 16. Kumintang | 17. Saludo | 18. Bleking | 19. Close Step | 20. Touch Step | 21. Point Step | 22. Brush Step | 23. Hop | 24. Leap | 25. Jump | 26. Skip | 27. Gallop | 28. Slide | 29. March | 30. Turn</div>
 
     <!-- Q1-5: Identify dance steps from description -->
     <div class="question" data-q="id1">
@@ -768,14 +853,118 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
       <p>10. Identify the feet position: The heel of one foot is placed directly in front of and touching the toes of the other foot. <span class="points">(1 pt)</span></p>
       <input type="text" class="id-input" id="id10" placeholder="Type your answer here...">
     </div>
+
+    <!-- Q11-15: Dance steps from description -->
+    <div class="question" data-q="id11">
+      <p>11. Identify the dance step: A hop followed by step-close-step in 2/4 time. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id11" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id12">
+      <p>12. Identify the dance step: A sliding movement followed by step-close-step in 2/4 time. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id12" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id13">
+      <p>13. Identify the dance step: A three-count waltz pattern with a step-close-step movement. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id13" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id14">
+      <p>14. Identify the dance step: A step followed by a close and another step, used to change direction. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id14" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id15">
+      <p>15. Identify the dance step: A waltz step with a cross-step and sway movement. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id15" placeholder="Type your answer here...">
+    </div>
+
+    <!-- Q16-20: Dance terms from definition -->
+    <div class="question" data-q="id16">
+      <p>16. Identify the term: A graceful hand and wrist movement done in a circular motion. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id16" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id17">
+      <p>17. Identify the term: A bowing or saluting gesture to show respect. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id17" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id18">
+      <p>18. Identify the term: Placing the heel of one foot forward with the toe raised. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id18" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id19">
+      <p>19. Identify the term: Placing the foot close to the other without transferring weight. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id19" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id20">
+      <p>20. Identify the term: Extending the foot forward or sideward with the toe touching the floor. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id20" placeholder="Type your answer here...">
+    </div>
+
+    <!-- Q21-25: Positions & locomotor -->
+    <div class="question" data-q="id21">
+      <p>21. Identify the term: Extending one foot sideward with the toe touching the floor and weight on the other foot. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id21" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id22">
+      <p>22. Identify the term: A quick brush of the foot forward or sideward with a slight spring. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id22" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id23">
+      <p>23. Identify the locomotor skill: A springy movement upward from one foot, landing on the same foot. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id23" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id24">
+      <p>24. Identify the locomotor skill: An extended movement where one takes off from one foot and lands on the other. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id24" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id25">
+      <p>25. Identify the locomotor skill: A springy movement upward from one foot, landing on both feet. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id25" placeholder="Type your answer here...">
+    </div>
+
+    <!-- Q26-30: More locomotor & arm positions -->
+    <div class="question" data-q="id26">
+      <p>26. Identify the locomotor skill: A combination of a step and a hop in an alternating pattern. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id26" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id27">
+      <p>27. Identify the locomotor skill: A sideways movement where one foot leads and the other follows in a gliding pattern. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id27" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id28">
+      <p>28. Identify the locomotor skill: A long, low gliding step sideways. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id28" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id29">
+      <p>29. Identify the locomotor skill: A steady, rhythmic stepping movement with upright posture. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id29" placeholder="Type your answer here...">
+    </div>
+
+    <div class="question" data-q="id30">
+      <p>30. Identify the locomotor skill: A spinning or pivoting movement around a fixed point. <span class="points">(1 pt)</span></p>
+      <input type="text" class="id-input" id="id30" placeholder="Type your answer here...">
+    </div>
   </div>
 
-  <!-- SECTION 4: DRAWING - 5 items x 2pts = 10pts -->
+  <!-- SECTION 4: DRAWING - 5 items x 1pt = 5pts -->
   <div class="exam-section sec-draw" id="examSection4" style="display:none">
-    <h3>Section 4: Drawing <span>(5 items x 2 pts = 10 pts)</span></h3>
+    <h3>Section 4: Drawing <span>(5 items x 1 pt = 5 pts)</span></h3>
 
     <div class="question" data-q="draw1">
-      <p>1. Draw a figure showing <strong>1st Position - FULL BODY</strong> (Arms: curved in front of chest, fingertips apart. Feet: heels together, toes apart in V-shape). <span class="points">(2 pts)</span></p>
+      <p>1. Draw a figure showing <strong>1st Position - FULL BODY</strong> (Arms: curved in front of chest, fingertips apart. Feet: heels together, toes apart in V-shape). <span class="points">(1 pt)</span></p>
       <div class="draw-area">
         <div class="draw-ref">
           <img src="1st Position.jpg" alt="1st Position Reference">
@@ -794,7 +983,7 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
     </div>
 
     <div class="question" data-q="draw2">
-      <p>2. Draw a figure showing <strong>2nd Position - FULL BODY</strong> (Arms: open sideward at shoulder level. Feet: stepped apart sideward). <span class="points">(2 pts)</span></p>
+      <p>2. Draw a figure showing <strong>2nd Position - FULL BODY</strong> (Arms: open sideward at shoulder level. Feet: stepped apart sideward). <span class="points">(1 pt)</span></p>
       <div class="draw-area">
         <div class="draw-ref">
           <img src="2st Position.jpg" alt="2nd Position Reference">
@@ -813,7 +1002,7 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
     </div>
 
     <div class="question" data-q="draw3">
-      <p>3. Draw a figure showing <strong>3rd Position - FULL BODY</strong> (Arms: one arm overhead, one sideward. Feet: heel to instep). <span class="points">(2 pts)</span></p>
+      <p>3. Draw a figure showing <strong>3rd Position - FULL BODY</strong> (Arms: one arm overhead, one sideward. Feet: heel to instep). <span class="points">(1 pt)</span></p>
       <div class="draw-area">
         <div class="draw-ref">
           <img src="3st Position.jpg" alt="3rd Position Reference">
@@ -832,7 +1021,7 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
     </div>
 
     <div class="question" data-q="draw4">
-      <p>4. Draw a figure showing <strong>4th Position - FULL BODY</strong> (Arms: one arm overhead, one in front. Feet: one ahead of other). <span class="points">(2 pts)</span></p>
+      <p>4. Draw a figure showing <strong>4th Position - FULL BODY</strong> (Arms: one arm overhead, one in front. Feet: one ahead of other). <span class="points">(1 pt)</span></p>
       <div class="draw-area">
         <div class="draw-ref">
           <img src="4st Position.jpg" alt="4th Position Reference">
@@ -851,7 +1040,7 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
     </div>
 
     <div class="question" data-q="draw5">
-      <p>5. Draw a figure showing <strong>5th Position - FULL BODY</strong> (Arms: both arms overhead. Feet: heel touching toe). <span class="points">(2 pts)</span></p>
+      <p>5. Draw a figure showing <strong>5th Position - FULL BODY</strong> (Arms: both arms overhead. Feet: heel touching toe). <span class="points">(1 pt)</span></p>
       <div class="draw-area">
         <div class="draw-ref">
           <img src="5st Position.jpg" alt="5th Position Reference">
@@ -870,84 +1059,136 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
     </div>
   </div>
 
-  <!-- SECTION 5: APPLICATION - 10 items x 4pts = 40pts -->
+  <!-- SECTION 5: APPLICATION - 20 items x 1pt = 20pts -->
   <div class="exam-section sec-app" id="examSection5" style="display:none">
-    <h3>Section 5: Application <span>(10 items x 4 pts = 40 pts)</span></h3>
+    <h3>Section 5: Application <span>(20 items x 1 pt = 20 pts)</span></h3>
+    <div class="section-answer-box"><strong>Answer Key:</strong> 1. Step, close step | 2. Hop step, close step | 3. Heel place, toe place, step, close step | 4. Slide, close step | 5. Step, close, step | 6. Step, close, raise heels | 7. Cross, close, step | 8. Step, cross, point | 9. Step, close, step | 10. Slide, cut, hop | 11. Step, brush, step | 12. Step, hop, step | 13. Step, close, step | 14. Step, step, step | 15. Slide, close | 16. Step, point, step | 17. Step, close, brush | 18. Hop, close, step | 19. Step, heel place, step | 20. Step, cut, step</div>
 
     <div class="question" data-q="app1">
-      <div class="answer-hint"><strong>Answer:</strong> Step, close step (pause). Count: Ah, 1 &amp; 2 &amp;</div>
-      <p>1. Write the step pattern for <strong>Plain Polka</strong>. <span class="points">(4 pts)</span></p>
+      <p>1. Write the step pattern for <strong>Plain Polka</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app1" placeholder="Write the step pattern here..." 
 data-keywords="step,close,step,polka,plain" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app2">
-      <div class="answer-hint"><strong>Answer:</strong> Hop step, close step (pause). Count: 1, 2, 1, 2 &amp;</div>
-      <p>2. Write the step pattern for <strong>Hop Polka</strong>. <span class="points">(4 pts)</span></p>
+      <p>2. Write the step pattern for <strong>Hop Polka</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app2" placeholder="Write the step pattern here..." 
 data-keywords="hop,step,close,step,polka" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app3">
-      <div class="answer-hint"><strong>Answer:</strong> Heel place, Toe place, Step, close step (pause). Count: 1, 2, 1, 2 &amp;</div>
-      <p>3. Write the step pattern for <strong>Heel and Toe Polka</strong>. <span class="points">(4 pts)</span></p>
+      <p>3. Write the step pattern for <strong>Heel and Toe Polka</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app3" placeholder="Write the step pattern here..." 
 data-keywords="heel,toe,step,close,polka" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app4">
-      <div class="answer-hint"><strong>Answer:</strong> Slide, close step (pause). Count: 1, 2, 1, 2 &amp;</div>
-      <p>4. Write the step pattern for <strong>Slide Polka</strong>. <span class="points">(4 pts)</span></p>
+      <p>4. Write the step pattern for <strong>Slide Polka</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app4" placeholder="Write the step pattern here..." 
 data-keywords="slide,close,step,polka" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app5">
-      <div class="answer-hint"><strong>Answer:</strong> Step, close, step (pause). Count: 1, 2, 3</div>
-      <p>5. Write the step pattern for <strong>Native Waltz</strong>. <span class="points">(4 pts)</span></p>
+      <p>5. Write the step pattern for <strong>Native Waltz</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app5" placeholder="Write the step pattern here..." 
 data-keywords="step,close,step,waltz,native" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app6">
-      <div class="answer-hint"><strong>Answer:</strong> Step, close, raise heels (pause). Count: 1, 2, 3</div>
-      <p>6. Write the step pattern for <strong>Waltz Balance</strong>. <span class="points">(4 pts)</span></p>
+      <p>6. Write the step pattern for <strong>Waltz Balance</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app6" placeholder="Write the step pattern here..." 
 data-keywords="step,close,raise,heels,waltz,balance" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app7">
-      <div class="answer-hint"><strong>Answer:</strong> Cross one foot over the other, close, step. Count: 1, 2, 3</div>
-      <p>7. Write the step pattern for <strong>Cross Waltz</strong>. <span class="points">(4 pts)</span></p>
+      <p>7. Write the step pattern for <strong>Cross Waltz</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app7" placeholder="Write the step pattern here..." 
 data-keywords="cross,close,step,waltz" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app8">
-      <div class="answer-hint"><strong>Answer:</strong> Step, cross, point. Count: 1, 2, 3</div>
-      <p>8. Write the step pattern for <strong>Sway Balance</strong>. <span class="points">(4 pts)</span></p>
+      <p>8. Write the step pattern for <strong>Sway Balance</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app8" placeholder="Write the step pattern here..." 
 data-keywords="step,cross,point,waltz,raise,brush,sway,balance" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app9">
-      <div class="answer-hint"><strong>Answer:</strong> Step, close, step. Count: 1, 2, 3</div>
-      <p>9. Write the step pattern for <strong>Change Step</strong>. <span class="points">(4 pts)</span></p>
+      <p>9. Write the step pattern for <strong>Change Step</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app9" placeholder="Write the step pattern here..." 
 data-keywords="step,close,step,change" data-minlen="10"></textarea>
     </div>
 
     <div class="question" data-q="app10">
-      <div class="answer-hint"><strong>Answer:</strong> Slide, cut, hop. Count: 1, 2, 3</div>
-      <p>10. Write the step pattern for <strong>Mazurka</strong>. <span class="points">(4 pts)</span></p>
+      <p>10. Write the step pattern for <strong>Mazurka</strong>. <span class="points">(1 pt)</span></p>
       <textarea class="app-area" id="app10" placeholder="Write the step pattern here..." 
 data-keywords="slide,cut,hop,mazurka" data-minlen="10"></textarea>
     </div>
+
+    <div class="question" data-q="app11">
+      <p>11. Write the step pattern for <strong>Touch Step</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app11" placeholder="Write the step pattern here..." 
+data-keywords="touch,step,point,toe" data-minlen="10"></textarea>
+    </div>
+
+    <div class="question" data-q="app12">
+      <p>12. Write the step pattern for <strong>Close Step</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app12" placeholder="Write the step pattern here..." 
+data-keywords="step,close,step" data-minlen="10"></textarea>
+    </div>
+
+    <div class="question" data-q="app13">
+      <p>13. Write the step pattern for <strong>Cross Step</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app13" placeholder="Write the step pattern here..." 
+data-keywords="cross,step,over,foot" data-minlen="10"></textarea>
+    </div>
+
+    <div class="question" data-q="app14">
+      <p>14. Write the step pattern for <strong>Point Step</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app14" placeholder="Write the step pattern here..." 
+data-keywords="point,toe,floor,step" data-minlen="10"></textarea>
+    </div>
+
+    <div class="question" data-q="app15">
+      <p>15. Write the step pattern for <strong>Brush Step</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app15" placeholder="Write the step pattern here..." 
+data-keywords="brush,swing,foot,floor" data-minlen="10"></textarea>
+    </div>
+
+    <div class="question" data-q="app16">
+      <p>16. Write the step pattern for <strong>Hop</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app16" placeholder="Write the step pattern here..." 
+data-keywords="spring,jump,one,foot,same" data-minlen="10"></textarea>
+    </div>
+
+    <div class="question" data-q="app17">
+      <p>17. Write the step pattern for <strong>Leap</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app17" placeholder="Write the step pattern here..." 
+data-keywords="takeoff,one,foot,land,opposite,extended" data-minlen="10"></textarea>
+    </div>
+
+    <div class="question" data-q="app18">
+      <p>18. Write the step pattern for <strong>Skip</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app18" placeholder="Write the step pattern here..." 
+data-keywords="step,hop,alternating,pattern" data-minlen="10"></textarea>
+    </div>
+
+    <div class="question" data-q="app19">
+      <p>19. Write the step pattern for <strong>Gallop</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app19" placeholder="Write the step pattern here..." 
+data-keywords="step,close,step,lead,forward" data-minlen="10"></textarea>
+    </div>
+
+    <div class="question" data-q="app20">
+      <p>20. Write the step pattern for <strong>Slide</strong>. <span class="points">(1 pt)</span></p>
+      <textarea class="app-area" id="app20" placeholder="Write the step pattern here..." 
+data-keywords="glide,low,side,step" data-minlen="10"></textarea>
+    </div>
   </div>
 
-  <!-- SECTION 6: ESSAY - 10 items x 1pt = 10pts -->
+  <!-- SECTION 6: ESSAY - 5 items x 1pt = 5pts -->
   <div class="exam-section sec-essay" id="examSection6" style="display:none">
-    <h3>Section 6: Essay <span>(10 items x 1 pt = 10 pts)</span></h3>
+    <h3>Section 6: Essay <span>(5 items x 1 pt = 5 pts)</span></h3>
+    <div class="section-answer-box"><strong>Answer Key:</strong> Keywords to include — 1. Cardiorespiratory endurance, muscular strength, muscular endurance, flexibility, body composition | 2. Strength (max force), endurance (repeated contractions) | 3. Arms: 1st circle front, 2nd open side, 3rd one up one side, 4th one up one front, 5th both overhead | 4. Plain: step-close-step; Hop: hop-step-close-step; both 2/4 time | 5. Saludo (bow/greeting), Kumintang (wrist circle/hand gesture)</div>
 
     <div class="question" data-q="es1">
       <p>1. Describe the five components of health-related fitness and explain how each contributes to overall physical well-being. <span class="points">(1 pt)</span></p>
@@ -972,31 +1213,6 @@ data-keywords="slide,cut,hop,mazurka" data-minlen="10"></textarea>
     <div class="question" data-q="es5">
       <p>5. Describe the role of "Saludo" and "Kumintang" in Philippine folk dances. Why are these gestures important in performing folk dances? <span class="points">(1 pt)</span></p>
       <textarea class="essay-area" id="es5" placeholder="Write your answer here..." data-keywords="saludo,greeting,bow,kumintang,wrist,hand,wave,gesture,culture,tradition,respect" data-minlen="80"></textarea>
-    </div>
-
-    <div class="question" data-q="es6">
-      <p>6. Create a simple 8-count dance sequence using at least 3 different dance steps you have learned. Identify each step used. <span class="points">(1 pt)</span></p>
-      <textarea class="essay-area" id="es6" placeholder="Write your answer here..." data-keywords="sequence,dance,step,polka,waltz,change,touch,point,count,rhythm,create" data-minlen="80"></textarea>
-    </div>
-
-    <div class="question" data-q="es7">
-      <p>7. If you were to design a fitness routine for a beginner using folk dance movements, what components of HRF would you include and why? <span class="points">(1 pt)</span></p>
-      <textarea class="essay-area" id="es7" placeholder="Write your answer here..." data-keywords="fitness,routine,beginner,HRF,cardiorespiratory,flexibility,muscular,endurance,warm,cool,stretch" data-minlen="80"></textarea>
-    </div>
-
-    <div class="question" data-q="es8">
-      <p>8. Explain the importance of proper body alignment and posture when performing the five fundamental positions of the feet. <span class="points">(1 pt)</span></p>
-      <textarea class="essay-area" id="es8" placeholder="Write your answer here..." data-keywords="alignment,posture,feet,positions,balance,injury,technique,form,correct,proper" data-minlen="80"></textarea>
-    </div>
-
-    <div class="question" data-q="es9">
-      <p>9. Choose one Philippine folk dance and explain how it incorporates the dance terms and steps you have learned. <span class="points">(1 pt)</span></p>
-      <textarea class="essay-area" id="es9" placeholder="Write your answer here..." data-keywords="folk,dance,philippine,steps,terms,performance,culture,tradition,movement,execute" data-minlen="80"></textarea>
-    </div>
-
-    <div class="question" data-q="es10">
-      <p>10. How can you apply the knowledge of health-related fitness components in your daily life beyond the dance classroom? Give specific examples. <span class="points">(1 pt)</span></p>
-      <textarea class="essay-area" id="es10" placeholder="Write your answer here..." data-keywords="daily,life,application,fitness,health,exercise,activity,lifestyle,habits,wellness" data-minlen="80"></textarea>
     </div>
   </div>
 
@@ -1048,7 +1264,7 @@ function startTimer() {
 
 // ===== PROGRESS BAR =====
 function updateProgress() {
-  var total = 65;
+  var total = 100;
   var filled = 0;
   // MC: mc1-mc20
   for (var i = 1; i <= 20; i++) {
@@ -1057,15 +1273,15 @@ function updateProgress() {
       if (radios[j].checked) { filled++; break; }
     }
   }
-  // AR: ar1-ar10
-  for (var i = 1; i <= 10; i++) {
+  // AR: ar1-ar20
+  for (var i = 1; i <= 20; i++) {
     var radios = document.getElementsByName('ar' + i);
     for (var j = 0; j < radios.length; j++) {
       if (radios[j].checked) { filled++; break; }
     }
   }
-  // ID: id1-id10
-  for (var i = 1; i <= 10; i++) {
+  // ID: id1-id30
+  for (var i = 1; i <= 30; i++) {
     var inp = document.getElementById('id' + i);
     if (inp && inp.value.trim() !== '') filled++;
   }
@@ -1073,13 +1289,13 @@ function updateProgress() {
   for (var i = 1; i <= 5; i++) {
     if (canvasHasContent('canvas' + i)) filled++;
   }
-  // Application: app1-app10
-  for (var i = 1; i <= 10; i++) {
+  // Application: app1-app20
+  for (var i = 1; i <= 20; i++) {
     var ta = document.getElementById('app' + i);
     if (ta && ta.value.trim() !== '') filled++;
   }
-  // Essay: es1-es10
-  for (var i = 1; i <= 10; i++) {
+  // Essay: es1-es5
+  for (var i = 1; i <= 5; i++) {
     var ta = document.getElementById('es' + i);
     if (ta && ta.value.trim() !== '') filled++;
   }
@@ -1221,7 +1437,9 @@ var mcAnswers = {
 var arAnswers = {
   ar1:'true',ar2:'false',ar3:'true',
   ar4:'true',ar5:'false',ar6:'true',ar7:'false',
-  ar8:'true',ar9:'true',ar10:'true'
+  ar8:'true',ar9:'true',ar10:'true',
+  ar11:'true',ar12:'false',ar13:'true',ar14:'false',ar15:'true',
+  ar16:'true',ar17:'false',ar18:'true',ar19:'true',ar20:'false'
 };
 
 var idAnswers = {
@@ -1234,7 +1452,27 @@ var idAnswers = {
   id7:['panadyak'],
   id8:['cabeceras'],
   id9:['fifth position','5th position','5th position of arms'],
-  id10:['fifth position','5th position','5th position of feet']
+  id10:['fifth position','5th position','5th position of feet'],
+  id11:['hop polka'],
+  id12:['slide polka'],
+  id13:['native waltz','waltz'],
+  id14:['change step'],
+  id15:['sway balance','sway bal'],
+  id16:['kumintang'],
+  id17:['saludo'],
+  id18:['bleking'],
+  id19:['close step','closing step'],
+  id20:['touch step'],
+  id21:['point step','pointing step'],
+  id22:['brush step','brush'],
+  id23:['hop'],
+  id24:['leap'],
+  id25:['jump'],
+  id26:['skip','skipping'],
+  id27:['gallop','galloping'],
+  id28:['slide','sliding'],
+  id29:['march','marching'],
+  id30:['turn','turning']
 };
 
 // ===== SHORT ANSWER AUTO-GRADING =====
@@ -1272,7 +1510,7 @@ function gradeApplication(id) {
   }
   var threshold = Math.ceil(keywords.length * 0.3);
   if (threshold < 2) threshold = 2;
-  return matched >= threshold ? 4 : 0;
+  return matched >= threshold ? 1 : 0;
 }
 
 // ===== SUBMIT & GRADE =====
@@ -1288,7 +1526,7 @@ function submitExam() {
     if (!answered) unanswered.push('MC #' + i);
   }
   // AR
-  for (var i = 1; i <= 10; i++) {
+  for (var i = 1; i <= 20; i++) {
     var radios = document.getElementsByName('ar' + i);
     var answered = false;
     for (var j = 0; j < radios.length; j++) {
@@ -1297,7 +1535,7 @@ function submitExam() {
     if (!answered) unanswered.push('AR #' + i);
   }
   // ID
-  for (var i = 1; i <= 10; i++) {
+  for (var i = 1; i <= 30; i++) {
     var inp = document.getElementById('id' + i);
     if (!inp || inp.value.trim() === '') unanswered.push('ID #' + i);
   }
@@ -1306,12 +1544,12 @@ function submitExam() {
     if (!canvasHasContent('canvas' + i)) unanswered.push('Drawing #' + i);
   }
   // Application
-  for (var i = 1; i <= 10; i++) {
+  for (var i = 1; i <= 20; i++) {
     var ta = document.getElementById('app' + i);
     if (!ta || ta.value.trim() === '') unanswered.push('Application #' + i);
   }
   // Essay
-  for (var i = 1; i <= 10; i++) {
+  for (var i = 1; i <= 5; i++) {
     var ta = document.getElementById('es' + i);
     if (!ta || ta.value.trim() === '') unanswered.push('Essay #' + i);
   }
@@ -1332,18 +1570,18 @@ function submitExam() {
     }
   }
 
-  // AR: 0-10
+  // AR: 0-20
   var arScore = 0;
-  for (var i = 1; i <= 10; i++) {
+  for (var i = 1; i <= 20; i++) {
     var radios = document.getElementsByName('ar' + i);
     for (var j = 0; j < radios.length; j++) {
       if (radios[j].checked && radios[j].value === arAnswers['ar' + i]) arScore++;
     }
   }
 
-  // ID: 0-10
+  // ID: 0-30
   var idScore = 0;
-  for (var i = 1; i <= 10; i++) {
+  for (var i = 1; i <= 30; i++) {
     var inp = document.getElementById('id' + i);
     if (inp) {
       var ans = inp.value.trim().toLowerCase();
@@ -1354,25 +1592,25 @@ function submitExam() {
     }
   }
 
-  // Drawing: 0-5 (then *2 for 0-10)
+  // Drawing: 0-5
   var drawScore = 0;
   for (var i = 1; i <= 5; i++) {
     if (canvasHasContent('canvas' + i)) drawScore++;
   }
 
-  // Application: 0-40
+  // Application: 0-20
   var appScore = 0;
-  for (var i = 1; i <= 10; i++) {
+  for (var i = 1; i <= 20; i++) {
     appScore += gradeApplication('app' + i);
   }
 
-  // Essay: 0-10
+  // Essay: 0-5
   var esScore = 0;
-  for (var i = 1; i <= 10; i++) {
+  for (var i = 1; i <= 5; i++) {
     esScore += gradeShortAnswer('es' + i);
   }
 
-  var total = mcScore + arScore + idScore + (drawScore * 2) + appScore + esScore;
+  var total = mcScore + arScore + idScore + drawScore + appScore + esScore;
   var cls = 'poor';
   var msg = 'Keep practicing!';
   if (total >= 90) { cls = 'excellent'; msg = 'Excellent! Outstanding performance!'; }
@@ -1397,11 +1635,11 @@ function submitExam() {
     document.getElementById('scoreMsg').textContent = msg;
     document.getElementById('scoreBreakdown').innerHTML =
       '<div class="breakdown-row"><span>Section 1: Multiple Choice</span><span>' + mcScore + ' / 20</span></div>' +
-      '<div class="breakdown-row"><span>Section 2: Alternate Response</span><span>' + arScore + ' / 10</span></div>' +
-      '<div class="breakdown-row"><span>Section 3: Identification</span><span>' + idScore + ' / 10</span></div>' +
-      '<div class="breakdown-row"><span>Section 4: Drawing (5 items)</span><span>' + (drawScore * 2) + ' / 10</span></div>' +
-      '<div class="breakdown-row"><span>Section 5: Application</span><span>' + appScore + ' / 40</span></div>' +
-      '<div class="breakdown-row"><span>Section 6: Essay</span><span>' + esScore + ' / 10</span></div>' +
+      '<div class="breakdown-row"><span>Section 2: Alternate Response</span><span>' + arScore + ' / 20</span></div>' +
+      '<div class="breakdown-row"><span>Section 3: Identification</span><span>' + idScore + ' / 30</span></div>' +
+      '<div class="breakdown-row"><span>Section 4: Drawing (5 items)</span><span>' + drawScore + ' / 5</span></div>' +
+      '<div class="breakdown-row"><span>Section 5: Application</span><span>' + appScore + ' / 20</span></div>' +
+      '<div class="breakdown-row"><span>Section 6: Essay</span><span>' + esScore + ' / 5</span></div>' +
       '<div class="breakdown-row total"><span>Time Elapsed</span><span>' + timeStr + '</span></div>';
     results.style.display = 'block';
   }
