@@ -433,7 +433,7 @@ h3 span{color:#7f8c8d;font-weight:normal;font-size:.8em}
     <button class="exam-tab" onclick="showExamSection(3)">Identification (30)</button>
     <button class="exam-tab" onclick="showExamSection(4)">Drawing (5)</button>
     <button class="exam-tab" onclick="showExamSection(5)">Application (20)</button>
-    <button class="exam-tab" onclick="showExamSection(6)">Essay (5)</button>
+    <button class="exam-tab" onclick="showExamSection(6)">Essay (1)</button>
   </div>
 
   <!-- SECTION 1: MULTIPLE CHOICE - 20 items x 1pt = 20pts -->
@@ -1185,34 +1185,14 @@ data-keywords="glide,low,side,step" data-minlen="10"></textarea>
     </div>
   </div>
 
-  <!-- SECTION 6: ESSAY - 5 items x 1pt = 5pts -->
+  <!-- SECTION 6: ESSAY - 1 item x 5pts = 5pts -->
   <div class="exam-section sec-essay" id="examSection6" style="display:none">
-    <h3>Section 6: Essay <span>(5 items x 1 pt = 5 pts)</span></h3>
-    <div class="section-answer-box"><strong>Answer Key:</strong> Keywords to include — 1. Cardiorespiratory endurance, muscular strength, muscular endurance, flexibility, body composition | 2. Strength (max force), endurance (repeated contractions) | 3. Arms: 1st circle front, 2nd open side, 3rd one up one side, 4th one up one front, 5th both overhead | 4. Plain: step-close-step; Hop: hop-step-close-step; both 2/4 time | 5. Saludo (bow/greeting), Kumintang (wrist circle/hand gesture)</div>
+    <h3>Section 6: Essay <span>(1 item x 5 pts = 5 pts)</span></h3>
+    <div class="section-answer-box"><strong>Answer Key:</strong> Should mention — Cardiorespiratory Endurance (heart/lungs/oxygen), Muscular Strength (max force), Muscular Endurance (repeated contractions), Flexibility (range of motion), Body Composition (fat vs lean mass). Must explain how each contributes to overall physical well-being.</div>
 
     <div class="question" data-q="es1">
-      <p>1. Describe the five components of health-related fitness and explain how each contributes to overall physical well-being. <span class="points">(1 pt)</span></p>
+      <p>1. Describe the five components of health-related fitness and explain how each contributes to overall physical well-being. <span class="points">(5 pts)</span></p>
       <textarea class="essay-area" id="es1" placeholder="Write your answer here..." data-keywords="cardiorespiratory,endurance,muscular,strength,flexibility,body,composition,heart,lungs,joints,activity" data-minlen="80"></textarea>
-    </div>
-
-    <div class="question" data-q="es2">
-      <p>2. Explain the difference between muscular strength and muscular endurance. Give one example activity for each. <span class="points">(1 pt)</span></p>
-      <textarea class="essay-area" id="es2" placeholder="Write your answer here..." data-keywords="muscular,strength,endurance,force,contraction,repetition,weight,lifting,running,plank,push" data-minlen="80"></textarea>
-    </div>
-
-    <div class="question" data-q="es3">
-      <p>3. Describe the five fundamental positions of the arms in Philippine folk dance. How do they differ from each other? <span class="points">(1 pt)</span></p>
-      <textarea class="essay-area" id="es3" placeholder="Write your answer here..." data-keywords="arms,positions,first,second,third,fourth,fifth,circle,overhead,sideward,chest,shoulder" data-minlen="80"></textarea>
-    </div>
-
-    <div class="question" data-q="es4">
-      <p>4. Compare and contrast the Plain Polka and the Hop Polka dance steps. What makes them similar and different? <span class="points">(1 pt)</span></p>
-      <textarea class="essay-area" id="es4" placeholder="Write your answer here..." data-keywords="polka,step,hop,close,pattern,2/4,rhythm,similar,difference" data-minlen="80"></textarea>
-    </div>
-
-    <div class="question" data-q="es5">
-      <p>5. Describe the role of "Saludo" and "Kumintang" in Philippine folk dances. Why are these gestures important in performing folk dances? <span class="points">(1 pt)</span></p>
-      <textarea class="essay-area" id="es5" placeholder="Write your answer here..." data-keywords="saludo,greeting,bow,kumintang,wrist,hand,wave,gesture,culture,tradition,respect" data-minlen="80"></textarea>
     </div>
   </div>
 
@@ -1294,8 +1274,8 @@ function updateProgress() {
     var ta = document.getElementById('app' + i);
     if (ta && ta.value.trim() !== '') filled++;
   }
-  // Essay: es1-es5
-  for (var i = 1; i <= 5; i++) {
+  // Essay: es1
+  for (var i = 1; i <= 1; i++) {
     var ta = document.getElementById('es' + i);
     if (ta && ta.value.trim() !== '') filled++;
   }
@@ -1489,9 +1469,13 @@ function gradeShortAnswer(id) {
     var kw = keywords[k].trim().toLowerCase();
     if (kw && lower.indexOf(kw) !== -1) matched++;
   }
-  var threshold = Math.ceil(keywords.length * 0.3);
-  if (threshold < 3) threshold = 3;
-  return matched >= threshold ? 1 : 0;
+  var pct = matched / keywords.length;
+  if (pct >= 0.8) return 5;
+  if (pct >= 0.6) return 4;
+  if (pct >= 0.4) return 3;
+  if (pct >= 0.3) return 2;
+  if (pct >= 0.2) return 1;
+  return 0;
 }
 
 // ===== APPLICATION AUTO-GRADING =====
@@ -1549,7 +1533,7 @@ function submitExam() {
     if (!ta || ta.value.trim() === '') unanswered.push('Application #' + i);
   }
   // Essay
-  for (var i = 1; i <= 5; i++) {
+  for (var i = 1; i <= 1; i++) {
     var ta = document.getElementById('es' + i);
     if (!ta || ta.value.trim() === '') unanswered.push('Essay #' + i);
   }
@@ -1606,7 +1590,7 @@ function submitExam() {
 
   // Essay: 0-5
   var esScore = 0;
-  for (var i = 1; i <= 5; i++) {
+  for (var i = 1; i <= 1; i++) {
     esScore += gradeShortAnswer('es' + i);
   }
 
